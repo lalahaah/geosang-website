@@ -14,7 +14,11 @@ import {
   ArrowRightCircle,
   Mail,
   Phone,
-  ChevronRight
+  ChevronRight,
+  Truck,
+  Settings,
+  Factory,
+  Smartphone
 } from 'lucide-react';
 
 const Home = () => {
@@ -107,57 +111,128 @@ const Home = () => {
         </motion.div>
       </section>
 
-      {/* Heritage Section */}
-      <section className="section-padding bg-white" id="about">
+      {/* What We Do Section (New Section 03) */}
+      <section className="section-padding bg-white" id="what-we-do">
         <div className="container-custom">
-          <div className="flex flex-col lg:flex-row gap-20 items-start">
-            <div className="lg:w-1/3">
-              <div className="text-geosang-teal text-sm font-bold uppercase tracking-[0.2em] mb-4">Our History</div>
-              <h2 className="text-4xl md:text-5xl font-light mb-8 leading-tight text-geosang-deep">
-                땀으로 일군 역사, <br />
-                데이터로 잇는 가치.
-              </h2>
-              <p className="text-lg text-slate-500 font-light leading-relaxed mb-10">
-                거상자원은 지난 40년간 현장에서 쌓아온 정직함과 기술력을 바탕으로, 자원순환의 새로운 질서를 개척해 나가고 있습니다.
-              </p>
-            </div>
+          <div className="text-center mb-20">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-geosang-teal text-sm font-bold uppercase tracking-[0.2em] mb-4"
+            >
+              WHAT WE DO
+            </motion.div>
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-5xl font-light text-geosang-deep leading-tight"
+            >
+              자원순환의 새로운 표준
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              viewport={{ once: true }}
+              className="mt-6 text-lg text-slate-500 font-light max-w-3xl mx-auto"
+            >
+              "거상의 정직한 땀방울이 자원순환의 투명한 데이터가 됩니다."
+            </motion.p>
+          </div>
 
-            <div className="lg:w-2/3">
-              <div className="space-y-16">
-                {[
-                  {
-                    year: "1986",
-                    title: "Foundation & Honesty",
-                    desc: "마대를 지고 달렸던 젊은 청년의 땀방울이 오늘날 거상의 1g도 속이지 않는 정직함이 되었습니다."
-                  },
-                  {
-                    year: "2010s",
-                    title: "Digital Transformation",
-                    desc: "개인 사업자에서 법인으로 전환하며 대한민국 자원 순환의 역사를 스마트하게 혁신하기 시작했습니다."
-                  },
-                  {
-                    year: "Future",
-                    title: "Leading Ecosystem",
-                    desc: "전통 자원 산업과 IT 플랫폼의 독보적 결합으로 투명하고 효율적인 순환 경제의 미래를 제시합니다."
-                  }
-                ].map((step, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                    viewport={{ once: true }}
-                    className="flex flex-col md:flex-row gap-8 items-start border-t border-slate-100 pt-10"
-                  >
-                    <div className="md:w-1/4 text-geosang-teal font-bold text-xl uppercase tracking-widest">{step.year}</div>
-                    <div className="md:w-3/4">
-                      <h4 className="text-2xl font-light text-geosang-deep mb-4">{step.title}</h4>
-                      <p className="text-lg text-slate-500 font-light leading-relaxed">{step.desc}</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+            {[
+              {
+                step: "Step 1",
+                title: "전략적 자원 수집",
+                enTitle: "Strategic Collection",
+                desc: "전국 파트너 네트워크와 유연한 배차 시스템으로 신속하게 상차합니다.",
+                icon: <Truck size={32} />,
+                color: "bg-[#166534]", // Forest Green
+                stats: "연간 수거량 120만톤",
+                details: ["전국 수거 파트너 네트워크", "유연한 실시간 배차 시스템", "맞춤형 수거 주기 관리"]
+              },
+              {
+                step: "Step 2",
+                title: "정밀 선별 및 가공",
+                enTitle: "Precision Sorting",
+                desc: "1g의 오차도 허용하지 않는 정직함으로 고순도 원료를 분류합니다.",
+                icon: <Settings size={32} />,
+                color: "bg-[#1A2C4E]", // Geosang Navy
+                stats: "선별 순도 99.9%",
+                details: ["고순도 재생 제지 원료 선별", "공정 투입 최적 상태 유지", "엄격한 품질 검수 및 기록"]
+              },
+              {
+                step: "Step 3",
+                title: "안정적 원료 납품",
+                enTitle: "Reliable Supply",
+                desc: "국내 주요 제지사와의 파트너십으로 안정적인 공급망을 보장합니다.",
+                icon: <Factory size={32} />,
+                color: "bg-[#166534]",
+                stats: "주요 제지사 15곳 파트너십",
+                details: ["안정적 원료 공급망 확보", "수요처별 맞춤 규격 납품", "투명한 거래 이력 보장"]
+              },
+              {
+                step: "Step 4",
+                title: "데이터 기반 순환 관리",
+                enTitle: "Digital Loop",
+                desc: "모든 과정을 디지털 데이터로 전환하여 순환의 가치를 증명합니다.",
+                icon: <Smartphone size={32} />,
+                color: "bg-[#1A2C4E]",
+                stats: "실시간 데이터 리포트",
+                details: ["디지털 데이터 전환 관리", "ESG 성과 시각화", "투명한 정산 및 이력 조회"]
+              }
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.15 }}
+                viewport={{ once: true }}
+                className="group relative"
+              >
+                <div className="bg-geosang-bg rounded-3xl p-8 h-full border border-slate-100 hover:shadow-2xl hover:bg-white transition-all duration-500 overflow-hidden">
+                  <div className={`w-16 h-16 ${item.color} rounded-2xl flex items-center justify-center text-white mb-8 group-hover:scale-110 transition-transform duration-500 shadow-lg`}>
+                    {item.icon}
+                  </div>
+                  
+                  <div className="mb-6">
+                    <span className="text-geosang-teal text-xs font-bold uppercase tracking-widest">{item.step}</span>
+                    <h3 className="text-2xl font-light text-geosang-deep mt-2">{item.title}</h3>
+                    <p className="text-slate-400 text-xs mt-1 font-medium">{item.enTitle}</p>
+                  </div>
+
+                  <p className="text-slate-500 font-light text-sm leading-relaxed mb-8">
+                    {item.desc}
+                  </p>
+
+                  <ul className="space-y-3 mb-8">
+                    {item.details.map((detail, idx) => (
+                      <li key={idx} className="flex items-center gap-2 text-xs text-slate-400 font-light">
+                        <div className="w-1 h-1 rounded-full bg-geosang-teal/40" />
+                        {detail}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="pt-6 border-t border-slate-100 mt-auto">
+                    <div className="text-geosang-deep font-bold text-sm tracking-tight">
+                      {item.stats}
                     </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
+                  </div>
+                </div>
+
+                {/* Arrow Connector (Desktop) */}
+                {i < 3 && (
+                  <div className="hidden lg:block absolute top-1/2 -right-4 z-10 translate-y-[-50%] opacity-20 group-hover:opacity-100 transition-opacity">
+                    <ArrowRight className="text-geosang-teal" size={24} />
+                  </div>
+                )}
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

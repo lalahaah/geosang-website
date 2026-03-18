@@ -83,6 +83,61 @@ const About = () => {
         </div>
       </section>
 
+      {/* History Timeline Section (Moved from Home) */}
+      <section className="section-padding bg-geosang-bg">
+        <div className="container-custom">
+          <div className="flex flex-col lg:flex-row gap-20 items-start">
+            <div className="lg:w-1/3">
+              <div className="text-geosang-teal text-sm font-bold uppercase tracking-[0.2em] mb-4">Our History</div>
+              <h2 className="text-4xl md:text-5xl font-light mb-8 leading-tight text-geosang-deep">
+                땀으로 일군 역사, <br />
+                데이터로 잇는 가치.
+              </h2>
+              <p className="text-lg text-slate-500 font-light leading-relaxed mb-10">
+                거상자원은 지난 40년간 현장에서 쌓아온 정직함과 기술력을 바탕으로, 자원순환의 새로운 질서를 개척해 나가고 있습니다.
+              </p>
+            </div>
+            
+            <div className="lg:w-2/3">
+              <div className="space-y-16">
+                {[
+                  { 
+                    year: "1986", 
+                    title: "Foundation & Honesty", 
+                    desc: "마대를 지고 달렸던 젊은 청년의 땀방울이 오늘날 거상의 1g도 속이지 않는 정직함이 되었습니다." 
+                  },
+                  { 
+                    year: "2010s", 
+                    title: "Digital Transformation", 
+                    desc: "개인 사업자에서 법인으로 전환하며 대한민국 자원 순환의 역사를 스마트하게 혁신하기 시작했습니다." 
+                  },
+                  { 
+                    year: "Future", 
+                    title: "Leading Ecosystem", 
+                    desc: "전통 자원 산업과 IT 플랫폼의 독보적 결합으로 투명하고 효율적인 순환 경제의 미래를 제시합니다." 
+                  }
+                ].map((step, i) => (
+                  <motion.div 
+                    key={i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    viewport={{ once: true }}
+                    className="flex flex-col md:flex-row gap-8 items-start border-t border-slate-200 pt-10"
+                  >
+                    <div className="md:w-1/4 text-geosang-teal font-bold text-xl uppercase tracking-widest">{step.year}</div>
+                    <div className="md:w-3/4">
+                      <h4 className="text-2xl font-light text-geosang-deep mb-4">{step.title}</h4>
+                      <p className="text-lg text-slate-500 font-light leading-relaxed">{step.desc}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Mission Section (Full Background) */}
       <section className="relative py-32 overflow-hidden bg-geosang-deep">
         <div className="absolute inset-0 z-0">
