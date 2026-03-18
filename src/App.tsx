@@ -6,6 +6,7 @@ import Business from './pages/Business';
 import Platform from './pages/Platform';
 import Contact from './pages/Contact';
 import GetStarted from './pages/GetStarted.tsx';
+import Process from './pages/Process';
 
 function App() {
   const [currentPage, setCurrentPage] = React.useState('home');
@@ -15,8 +16,8 @@ function App() {
   React.useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '');
-      if (['home', 'about', 'solutions', 'infrastructure', 'platform', 'contact', 'get-started', 'service'].includes(hash)) {
-        // 서비스(#service), 솔루션/인프라(#solutions/#infrastructure) → 비즈니스 페이지로 연결
+      if (['home', 'about', 'solutions', 'infrastructure', 'platform', 'contact', 'get-started', 'service', 'process'].includes(hash)) {
+        // 서비스(#service) → business, 프로세스(#process) → process
         if (hash === 'solutions' || hash === 'infrastructure' || hash === 'service') setCurrentPage('business');
         else setCurrentPage(hash);
       } else {
@@ -36,6 +37,8 @@ function App() {
       {currentPage === 'platform' && <Platform />}
       {currentPage === 'contact' && <Contact />}
       {currentPage === 'get-started' && <GetStarted />}
+      {/* #process → Process 페이지 */}
+      {currentPage === 'process' && <Process />}
     </Layout>
   );
 }
