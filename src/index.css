@@ -20,6 +20,14 @@
   --radius-full: 28px;
 }
 
+@utility filter-white {
+  filter: brightness(0) invert(1);
+}
+
+@utility filter-geosang-teal {
+  filter: invert(48%) sepia(79%) saturate(2256%) hue-rotate(143deg) brightness(92%) contrast(101%);
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;

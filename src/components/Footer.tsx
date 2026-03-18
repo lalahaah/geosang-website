@@ -1,18 +1,28 @@
-import { Recycle, Facebook, Twitter, Linkedin, Instagram, ArrowRight } from 'lucide-react';
+import { Facebook, Twitter, Linkedin, Instagram, ArrowRight } from 'lucide-react';
+import { translations } from '../translations';
+import logo from '../assets/logo.svg';
 
-const Footer = () => {
+interface FooterProps {
+  lang: 'ko' | 'en';
+}
+
+const Footer: React.FC<FooterProps> = ({ lang }) => {
   const currentYear = new Date().getFullYear();
+  const t = translations[lang].footer;
 
   return (
     <footer className="bg-[#093944] text-white pt-24 pb-12 font-light">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Top Footer: Logo, Socials, Newsletter */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-12 pb-16 border-b border-white/10 mb-16">
-          <div className="flex items-center gap-3 group cursor-pointer">
-            <div className="bg-geosang-teal p-1.5 rounded text-white group-hover:rotate-12 transition-transform">
-              <Recycle size={24} />
+          <div className="flex items-center gap-3 group cursor-pointer" onClick={() => window.location.href = '/'}>
+            <div className="group-hover:rotate-12 transition-transform w-14 h-14 flex items-center justify-center">
+              <img src={logo} alt="GEOSANG RESOURCES" className="w-full h-full object-contain filter-geosang-teal" />
             </div>
-            <span className="text-2xl font-bold tracking-tight">GEOSANG</span>
+            <div className="text-2xl font-bold tracking-tight flex items-center gap-2 text-geosang-teal">
+              <span>GEOSANG</span>
+              <span className="text-geosang-teal">RESOURCES</span>
+            </div>
           </div>
 
           <div className="flex items-center gap-8">
@@ -25,56 +35,42 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="w-full lg:w-auto">
-            <div className="flex flex-col sm:flex-row gap-4">
-              <input 
-                type="email" 
-                placeholder="Join our newsletter" 
-                className="bg-white/5 border border-white/10 rounded-full px-6 py-3 text-sm focus:outline-none focus:border-geosang-teal w-full sm:w-64 transition-all"
-              />
-              <button className="bg-geosang-teal hover:bg-[#008f84] text-white font-bold py-3 px-8 rounded-full text-sm transition-all whitespace-nowrap">
-                Submit
-              </button>
-            </div>
-          </div>
+          {/* 뉴스레터 구독 폼 삭제 */}
         </div>
 
         {/* Middle Footer: Links */}
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 mb-20">
           <div className="col-span-2 lg:col-span-2">
-            <h5 className="text-[#00C2B5] text-xs font-bold tracking-[0.2em] uppercase mb-8">About Geosang</h5>
-            <p className="text-white/50 text-sm leading-relaxed max-w-sm">
-              우리는 40년의 정직함과 최첨단 디지털 기술을 결합하여 <br />
-              자원순환의 새로운 표준을 제시합니다. <br />
-              단순한 폐기물 수거를 넘어, 자원의 가치를 극대화하는 <br />
-              파트너십을 구축합니다.
+            <h5 className="text-[#00C2B5] text-xs font-bold tracking-[0.2em] uppercase mb-8">{t.aboutTitle}</h5>
+            <p className="text-white/50 text-sm leading-relaxed max-w-sm whitespace-pre-line">
+              {t.aboutDesc}
             </p>
           </div>
 
           <div>
-            <h5 className="text-[#00C2B5] text-xs font-bold tracking-[0.2em] uppercase mb-8">Products</h5>
+            <h5 className="text-[#00C2B5] text-xs font-bold tracking-[0.2em] uppercase mb-8">{t.products}</h5>
             <ul className="space-y-4 text-sm text-white/60">
-              <li><a href="#what-we-do" className="hover:text-white transition-colors">Raw Materials</a></li>
-              <li><a href="#what-we-do" className="hover:text-white transition-colors">Recycling Services</a></li>
-              <li><a href="#esg" className="hover:text-white transition-colors">ESG Reporting</a></li>
-              <li><a href="#platform" className="hover:text-white transition-colors">Digital Platform</a></li>
+              <li><a href="#what-we-do" className="hover:text-white transition-colors">{t.rawMaterials}</a></li>
+              <li><a href="#what-we-do" className="hover:text-white transition-colors">{t.recyclingServices}</a></li>
+              <li><a href="#esg" className="hover:text-white transition-colors">{t.esgReporting}</a></li>
+              <li><a href="#platform" className="hover:text-white transition-colors">{t.digitalPlatform}</a></li>
             </ul>
           </div>
 
           <div>
-            <h5 className="text-[#00C2B5] text-xs font-bold tracking-[0.2em] uppercase mb-8">Our Company</h5>
+            <h5 className="text-[#00C2B5] text-xs font-bold tracking-[0.2em] uppercase mb-8">{t.company}</h5>
             <ul className="space-y-4 text-sm text-white/60">
-              <li><a href="#about" className="hover:text-white transition-colors">About Us</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Leadership</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
+              {/* 리더십 항목 삭제 */}
+              <li><a href="#about" className="hover:text-white transition-colors">{t.aboutUs}</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">{t.contact}</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">{t.careers}</a></li>
             </ul>
           </div>
 
           <div>
-            <h5 className="text-[#00C2B5] text-xs font-bold tracking-[0.2em] uppercase mb-8">Connect</h5>
+            <h5 className="text-[#00C2B5] text-xs font-bold tracking-[0.2em] uppercase mb-8">{t.connect}</h5>
             <div className="flex items-center gap-2 text-sm text-geosang-teal font-bold group hover:gap-3 transition-all cursor-pointer">
-              Get in touch <ArrowRight size={16} />
+              {t.getInTouch} <ArrowRight size={16} />
             </div>
           </div>
         </div>
@@ -82,9 +78,9 @@ const Footer = () => {
         {/* Bottom Footer: Legal */}
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-start md:items-center gap-8 text-[11px] font-medium tracking-widest text-white/30 uppercase">
           <div className="flex flex-col gap-2">
-            <p>(주)거상자원 | 대표이사: 홍길동 | 사업자등록번호: 123-45-67890</p>
-            <p>본사: 경기도 파주시 OO면 OO로 123 | Phone: 031-123-4567</p>
-            <p>© {currentYear} Geosang Resources. All rights reserved.</p>
+            <p>{t.rep}</p>
+            <p>{t.address}</p>
+            <p>© {currentYear} GEOSANG RESOURCES. All rights reserved.</p>
           </div>
           <div className="flex gap-12">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>

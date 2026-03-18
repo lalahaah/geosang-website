@@ -5,17 +5,19 @@ import About from './pages/About';
 import Business from './pages/Business';
 import Platform from './pages/Platform';
 import Contact from './pages/Contact';
-import GetStarted from './pages/GetStarted';
+import GetStarted from './pages/GetStarted.tsx';
 
 function App() {
   const [currentPage, setCurrentPage] = React.useState('home');
+  const [lang, setLang] = React.useState<'ko' | 'en'>('ko');
 
   // Simple routing for demo purposes
   React.useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '');
-      if (['home', 'about', 'solutions', 'infrastructure', 'platform', 'contact', 'get-started'].includes(hash)) {
-        if (hash === 'solutions' || hash === 'infrastructure') setCurrentPage('business');
+      if (['home', 'about', 'solutions', 'infrastructure', 'platform', 'contact', 'get-started', 'service'].includes(hash)) {
+        // 서비스(#service), 솔루션/인프라(#solutions/#infrastructure) → 비즈니스 페이지로 연결
+        if (hash === 'solutions' || hash === 'infrastructure' || hash === 'service') setCurrentPage('business');
         else setCurrentPage(hash);
       } else {
         setCurrentPage('home');
@@ -27,8 +29,8 @@ function App() {
   }, []);
 
   return (
-    <Layout>
-      {currentPage === 'home' && <Home />}
+    <Layout lang={lang} setLang={setLang}>
+      {currentPage === 'home' && <Home lang={lang} />}
       {currentPage === 'about' && <About />}
       {currentPage === 'business' && <Business />}
       {currentPage === 'platform' && <Platform />}
