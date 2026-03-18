@@ -67,8 +67,11 @@ const Navbar = () => {
             }`}>
               Login
             </button>
-            <button className="bg-rubicon-teal hover:bg-rubicon-deep text-white text-[12px] tracking-widest font-bold px-7 py-3 rounded-full transition-all hover:scale-[1.03] active:scale-[0.98] shadow-lg shadow-rubicon-teal/20">
-              REQUEST COLLECTION
+            <button 
+              onClick={() => window.location.hash = 'get-started'}
+              className="bg-rubicon-teal hover:bg-rubicon-deep text-white text-[12px] tracking-widest font-bold px-7 py-3 rounded-full transition-all hover:scale-[1.03] active:scale-[0.98] shadow-lg shadow-rubicon-teal/20"
+            >
+              GET STARTED
             </button>
             <button 
               className="md:hidden text-slate-700 dark:text-slate-300"
@@ -96,8 +99,14 @@ const Navbar = () => {
               </a>
             ))}
             <hr className="border-slate-100" />
-            <button className="w-full bg-rubicon-deep text-white font-bold py-4 rounded-xl tracking-widest text-sm">
-              REQUEST COLLECTION
+            <button 
+              onClick={() => {
+                window.location.hash = 'get-started';
+                setMobileMenuOpen(false);
+              }}
+              className="w-full bg-rubicon-deep text-white font-bold py-4 rounded-xl tracking-widest text-sm"
+            >
+              GET STARTED
             </button>
           </div>
         </div>

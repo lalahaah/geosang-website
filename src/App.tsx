@@ -5,6 +5,7 @@ import About from './pages/About';
 import Business from './pages/Business';
 import Platform from './pages/Platform';
 import Contact from './pages/Contact';
+import GetStarted from './pages/GetStarted';
 
 function App() {
   const [currentPage, setCurrentPage] = React.useState('home');
@@ -13,7 +14,7 @@ function App() {
   React.useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '');
-      if (['home', 'about', 'solutions', 'infrastructure', 'platform', 'contact'].includes(hash)) {
+      if (['home', 'about', 'solutions', 'infrastructure', 'platform', 'contact', 'get-started'].includes(hash)) {
         if (hash === 'solutions' || hash === 'infrastructure') setCurrentPage('business');
         else setCurrentPage(hash);
       } else {
@@ -32,6 +33,7 @@ function App() {
       {currentPage === 'business' && <Business />}
       {currentPage === 'platform' && <Platform />}
       {currentPage === 'contact' && <Contact />}
+      {currentPage === 'get-started' && <GetStarted />}
     </Layout>
   );
 }
