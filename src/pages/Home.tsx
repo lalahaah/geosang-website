@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  ArrowRight, 
-  ShieldCheck, 
-  Leaf, 
-  Recycle, 
-  TrendingUp, 
+import heroBg from '../assets/hero-bg.avif';
+import {
+  ArrowRight,
+  ShieldCheck,
+  Leaf,
+  Recycle,
+  TrendingUp,
   MessageSquare,
   Building2,
   CheckCircle2,
@@ -44,16 +45,16 @@ const Home = () => {
       {/* Hero Section */}
       <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-geosang-deep">
         <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=2670&auto=format&fit=crop" 
+          <img
+            src={heroBg}
             alt="Modern Smart Yard"
-            className="w-full h-full object-cover opacity-40 grayscale"
+            className="w-full h-full object-cover opacity-100"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-geosang-deep/20 via-geosang-deep/60 to-geosang-deep z-10" />
         </div>
 
         <div className="relative z-20 container-custom py-32 text-center flex flex-col items-center">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-geosang-teal text-sm font-bold uppercase tracking-[0.2em] mb-8"
@@ -61,7 +62,7 @@ const Home = () => {
             The Future of Resource Circulation
           </motion.div>
 
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -71,17 +72,17 @@ const Home = () => {
             <span className="text-geosang-teal">가치로 잇는 내일.</span>
           </motion.h1>
 
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
             className="text-lg md:text-xl text-white/60 mb-12 leading-relaxed max-w-2xl"
           >
-            거상자원은 40년의 정직함을 데이터에 담아,<br className="hidden md:block" /> 
+            거상자원은 40년의 정직함을 데이터에 담아,<br className="hidden md:block" />
             자원순환의 새로운 표준을 만듭니다.
           </motion.p>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
@@ -97,7 +98,7 @@ const Home = () => {
           </motion.div>
         </div>
 
-        <motion.div 
+        <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 2.5 }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-30"
@@ -120,27 +121,27 @@ const Home = () => {
                 거상자원은 지난 40년간 현장에서 쌓아온 정직함과 기술력을 바탕으로, 자원순환의 새로운 질서를 개척해 나가고 있습니다.
               </p>
             </div>
-            
+
             <div className="lg:w-2/3">
               <div className="space-y-16">
                 {[
-                  { 
-                    year: "1986", 
-                    title: "Foundation & Honesty", 
-                    desc: "마대를 지고 달렸던 젊은 청년의 땀방울이 오늘날 거상의 1g도 속이지 않는 정직함이 되었습니다." 
+                  {
+                    year: "1986",
+                    title: "Foundation & Honesty",
+                    desc: "마대를 지고 달렸던 젊은 청년의 땀방울이 오늘날 거상의 1g도 속이지 않는 정직함이 되었습니다."
                   },
-                  { 
-                    year: "2010s", 
-                    title: "Digital Transformation", 
-                    desc: "개인 사업자에서 법인으로 전환하며 대한민국 자원 순환의 역사를 스마트하게 혁신하기 시작했습니다." 
+                  {
+                    year: "2010s",
+                    title: "Digital Transformation",
+                    desc: "개인 사업자에서 법인으로 전환하며 대한민국 자원 순환의 역사를 스마트하게 혁신하기 시작했습니다."
                   },
-                  { 
-                    year: "Future", 
-                    title: "Leading Ecosystem", 
-                    desc: "전통 자원 산업과 IT 플랫폼의 독보적 결합으로 투명하고 효율적인 순환 경제의 미래를 제시합니다." 
+                  {
+                    year: "Future",
+                    title: "Leading Ecosystem",
+                    desc: "전통 자원 산업과 IT 플랫폼의 독보적 결합으로 투명하고 효율적인 순환 경제의 미래를 제시합니다."
                   }
                 ].map((step, i) => (
-                  <motion.div 
+                  <motion.div
                     key={i}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -181,23 +182,23 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { 
-                icon: <Recycle size={32} />, 
-                title: "Industrial Collection", 
+              {
+                icon: <Recycle size={32} />,
+                title: "Industrial Collection",
                 desc: "국가 공인 계근 시스템 기반의 투명하고 정직한 전단가 매입 및 신속 수거 서비스를 제공합니다."
               },
-              { 
-                icon: <ShieldCheck size={32} />, 
-                title: "Smart Solutions", 
+              {
+                icon: <ShieldCheck size={32} />,
+                title: "Smart Solutions",
                 desc: "최첨단 자동 선별 시스템과 IT 플랫폼을 결합하여 자원의 투명한 이력 관리와 자산 가치를 극대화합니다."
               },
-              { 
-                icon: <Building2 size={32} />, 
-                title: "B2B Partnership", 
+              {
+                icon: <Building2 size={32} />,
+                title: "B2B Partnership",
                 desc: "주요 제지사 및 제조사와의 긴밀한 파트너십을 통해 안정적이고 신뢰할 수 있는 원료 공급망을 유지합니다."
               }
             ].map((solution, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 whileHover={{ y: -5 }}
                 className="bg-white p-12 rounded-3xl border border-slate-100 hover:shadow-xl transition-all"
@@ -233,7 +234,7 @@ const Home = () => {
                 플랫폼 체험하기 <ArrowRight size={20} />
               </button>
             </div>
-            
+
             <div className="lg:w-2/3">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 {[
@@ -242,8 +243,8 @@ const Home = () => {
                   { title: "ESG Report", desc: "탄소 배출 절감량 및 환경 기여도를 실시간 수치화하여 직관적으로 확인합니다." },
                   { title: "Asset Value", desc: "비즈니스 자산으로서의 자원 가치를 최적화하는 전략적 솔루션을 제안합니다." }
                 ].map((feature, i) => (
-                  <motion.div 
-                    key={i} 
+                  <motion.div
+                    key={i}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ delay: i * 0.1 }}
@@ -297,7 +298,7 @@ const Home = () => {
                 거상자원은 단순히 폐기물을 처리하는 것을 넘어, 자원의 전 생애주기를 데이터로 추적하여 실질적인 환경 가치를 창출합니다.
               </p>
             </div>
-            
+
             <div className="lg:w-2/3">
               <div className="grid grid-cols-2 gap-8">
                 {[
@@ -306,7 +307,7 @@ const Home = () => {
                   { label: "탄소 절감량", value: "420.5 톤", icon: <Clock size={24} /> },
                   { label: "에너지 절약", value: "32%", icon: <TrendingUp size={24} /> }
                 ].map((stat, i) => (
-                  <motion.div 
+                  <motion.div
                     key={i}
                     whileHover={{ y: -5 }}
                     className="p-10 border border-slate-100 rounded-3xl bg-geosang-bg transition-all"
@@ -326,7 +327,7 @@ const Home = () => {
       <section className="section-padding bg-geosang-bg">
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
-            <motion.div 
+            <motion.div
               whileHover={{ y: -5 }}
               className="bg-geosang-deep p-16 rounded-3xl text-white relative overflow-hidden group cursor-pointer"
             >
@@ -340,7 +341,7 @@ const Home = () => {
               <Recycle size={280} className="absolute -bottom-20 -right-20 text-white/5 opacity-10 rotate-12 group-hover:rotate-45 transition-transform duration-1000" />
             </motion.div>
 
-            <motion.div 
+            <motion.div
               whileHover={{ y: -5 }}
               className="bg-white p-16 rounded-3xl text-geosang-deep border border-slate-200 relative overflow-hidden group cursor-pointer"
             >
@@ -360,7 +361,7 @@ const Home = () => {
             <div className="lg:w-1/3 bg-geosang-deep p-16 text-white leading-relaxed">
               <h3 className="text-4xl font-light mb-8 leading-tight">빠르고 확실한 <br />비즈니스 파트너십.</h3>
               <p className="text-white/60 mb-12 text-lg font-light">상담 요청을 남겨주시면 담당 전문가가 24시간 내에 연락드립니다.</p>
-              
+
               <div className="space-y-8">
                 <div className="flex items-center gap-6">
                   <div className="bg-white/10 p-4 rounded-2xl"><Mail className="text-geosang-teal" /></div>
@@ -383,31 +384,31 @@ const Home = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-3">
                     <label className="text-xs font-bold uppercase tracking-widest text-slate-400 pl-1">Company Name</label>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       placeholder="회사명을 입력해주세요"
                       className="w-full bg-geosang-bg border border-slate-100 rounded-xl p-5 text-lg font-light focus:ring-1 focus:ring-geosang-teal focus:border-transparent outline-none transition-all"
                       value={formData.company}
-                      onChange={(e) => setFormData({...formData, company: e.target.value})}
+                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                     />
                   </div>
                   <div className="space-y-3">
                     <label className="text-xs font-bold uppercase tracking-widest text-slate-400 pl-1">Contact Number</label>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       placeholder="연락처를 입력해주세요"
                       className="w-full bg-geosang-bg border border-slate-100 rounded-xl p-5 text-lg font-light focus:ring-1 focus:ring-geosang-teal focus:border-transparent outline-none transition-all"
                       value={formData.contact}
-                      onChange={(e) => setFormData({...formData, contact: e.target.value})}
+                      onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
                     />
                   </div>
                 </div>
                 <div className="space-y-3">
                   <label className="text-xs font-bold uppercase tracking-widest text-slate-400 pl-1">Inquiry Type</label>
-                  <select 
+                  <select
                     className="w-full bg-geosang-bg border border-slate-100 rounded-xl p-5 text-lg font-light focus:ring-1 focus:ring-geosang-teal focus:border-transparent outline-none transition-all appearance-none"
                     value={formData.type}
-                    onChange={(e) => setFormData({...formData, type: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, type: e.target.value })}
                   >
                     <option value="collection">수거 요청 (Recycling)</option>
                     <option value="supply">원료 공급 (Supply)</option>
@@ -417,12 +418,12 @@ const Home = () => {
                 </div>
                 <div className="space-y-3">
                   <label className="text-xs font-bold uppercase tracking-widest text-slate-400 pl-1">Message</label>
-                  <textarea 
+                  <textarea
                     placeholder="문의하실 내용을 상세히 적어주세요"
                     rows={4}
                     className="w-full bg-geosang-bg border border-slate-100 rounded-xl p-5 text-lg font-light focus:ring-1 focus:ring-geosang-teal focus:border-transparent outline-none transition-all"
                     value={formData.message}
-                    onChange={(e) => setFormData({...formData, message: e.target.value})}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   ></textarea>
                 </div>
                 <button className="w-full bg-geosang-teal text-white font-bold py-6 rounded-full text-xl shadow-xl hover:bg-geosang-dark transition-all flex items-center justify-center gap-3 active:scale-[0.99] uppercase tracking-widest">
@@ -437,7 +438,7 @@ const Home = () => {
 
       {/* Floating CTA */}
       <div className="fixed bottom-12 right-12 z-[200]">
-        <motion.button 
+        <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           className="bg-primary text-white font-black p-5 rounded-full shadow-3xl flex items-center justify-center gap-3 border-4 border-white/10 backdrop-blur-md"
