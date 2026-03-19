@@ -1,4 +1,5 @@
-import { motion } from 'framer-motion';
+import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
+import { useRef, useState } from 'react';
 import {
   Truck,
   Layers,
@@ -14,12 +15,18 @@ import heroBg from '../assets/herosection-bg.avif';
 
 /* ─────────────────────────────────────────────
    데이터 정의
-───────────────────────────────────────────── */
+ ───────────────────────────────────────────── */
 const stats = [
-  { value: '40+', label: '년간 현장 경험' },
-  { value: '1,000+', label: '배출처 네트워크' },
-  { value: '99.9%', label: '계근 데이터 정확도' },
-  { value: '2026', label: 'Digital Loop 론칭' },
+  { value: '40+', label: 'YEARS OF EXPERIENCE' },
+  { value: '1,000+', label: 'COLLECTION NETWORK' },
+  { value: '99.9%', label: 'DATA ACCURACY' },
+  { value: '2026', label: 'DIGITAL LOOP LAUNCH' },
+];
+
+const partners = [
+  { name: '한솔제지', logo: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=2670&auto=format&fit=crop', desc: '국내 최대 제지사와의 장기 파트너십' },
+  { name: '무림P&P', logo: 'https://images.unsplash.com/photo-1454165205744-3b78555e5572?q=80&w=2670&auto=format&fit=crop', desc: '고순도 펄프 원료의 안정적 공급' },
+  { name: '깨끗한나라', logo: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2670&auto=format&fit=crop', desc: '자원순환 효율 극대화 프로젝트' },
 ];
 
 const steps = [
@@ -28,7 +35,7 @@ const steps = [
     icon: <Truck size={32} strokeWidth={1.5} />,
     title: '전략적 자원 수집',
     copy: '현장의 발로 뛰는 신속한 수집',
-    desc: '전국적인 수거 파트너 네트워크와 자사 차량으로 배출처별 최적의 수거 주기를 운영합니다. 단 한 번의 발걸음도 데이터로 기록됩니다.',
+    desc: '전국적인 수거 파트너 네트워크와 자사 차량으로 배출처별 최적의 수거 주기를 운영합니다. 모든 수거 과정은 디지털 데이터로 기록됩니다.',
     details: [
       '전국적인 수거 파트너 네트워크 운영',
       '자사 및 협력사 차량을 활용한 유연한 배차 시스템',
@@ -42,7 +49,7 @@ const steps = [
     icon: <Layers size={32} strokeWidth={1.5} />,
     title: '정밀 선별 및 가공',
     copy: '1g의 오차도 허용하지 않는 정직한 품질',
-    desc: '숙련된 전문가와 자동화 시스템이 결합된 선별 공정으로 고순도 재생 원료를 생산합니다. 국가 공인 계근 시스템으로 모든 과정을 실시간 기록합니다.',
+    desc: '숙련된 전문가와 자동화 시스템이 결합된 선별 공정으로 고순도 재생 원료를 생산합니다. 국가 공인 계근 시스템으로 신뢰를 약속합니다.',
     details: [
       '숙련된 전문가·시스템을 통한 고순도 재생 제지 원료 선별',
       '제지 공정에 즉시 투입 가능한 최적의 원료 상태 유지',
@@ -56,11 +63,11 @@ const steps = [
     icon: <Handshake size={32} strokeWidth={1.5} />,
     title: '안정적 원료 납품',
     copy: '제지 산업의 든든한 상생 파트너',
-    desc: '국내 주요 제지사와 장기적이고 신뢰 기반의 파트너십을 유지합니다. 대규모 적치 공간으로 수급 불안정을 원천 차단하고 안정적인 원료를 공급합니다.',
+    desc: '국내 주요 제지사와 장기적인 파트너십을 유지하며, 대규모 적시설비를 통해 수급 불안정을 원천 차단하고 안정적인 원료를 공급합니다.',
     details: [
       '국내 주요 제지사와의 장기적이고 안정적인 파트너십',
-      '고객사별 요구 규격에 맞춘 커스텀 압축 및 가공 규격 제공',
-      '대규모 적치 공간 확보를 통한 수급 불안정 원차단',
+      '고객사별 요구 규격에 맞춘 커스텀 압축 규격 제공',
+      '대규모 적치 공간 확보를 통한 수급 안정화',
     ],
     image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2670&auto=format&fit=crop',
     imageAlt: '원료 납품 현장',
@@ -70,262 +77,201 @@ const steps = [
 const roadmap = [
   { phase: 'Phase 1', title: '디지털 계근 및 정산 시스템 도입', date: '2025년 상반기', done: true },
   { phase: 'Phase 2', title: '수거 차량 최적 경로 AI 알고리즘 적용', date: '2025년 하반기', done: false },
-  { phase: 'Phase 3', title: '통합 데이터 플랫폼 "Geosang Loop" 런칭', date: '2026년', done: false },
+  { phase: 'Phase 3', title: '통합 데이터 플랫폼 \"Geosang Loop\" 런칭', date: '2026년', done: false },
 ];
 
 /* ─────────────────────────────────────────────
-   컴포넌트
-───────────────────────────────────────────── */
-const Process = () => {
+   컴포넌트: Sticky Step (Rubicon 스타일)
+ ───────────────────────────────────────────── */
+const StickySteps = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ['start start', 'end end'],
+  });
+
+  // 스크롤 변경 시 현재 인덱스 업데이트 (3단계 기준)
+  useMotionValueEvent(scrollYProgress, 'change', (latest) => {
+    // 0~1 사이의 값을 3등분하여 인덱스 결정
+    const nextIndex = Math.min(Math.floor(latest * 3), 2);
+    if (nextIndex !== currentIndex) {
+      setCurrentIndex(nextIndex);
+    }
+  });
+
   return (
-    // 헤더와 겹치도록 pt 없음
-    <div className="flex flex-col w-full bg-white font-display overflow-x-hidden">
-
-      {/* ══════════════════════════════════════
-          ① Hero Section
-      ══════════════════════════════════════ */}
-      <section className="relative min-h-[70vh] flex items-end pb-20 overflow-hidden bg-geosang-deep">
-        {/* 배경 이미지 */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src={heroBg}
-            alt="프로세스 히어로"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-[#0B2D35]/95 z-10" />
-        </div>
-
-        <div className="relative z-20 container-custom w-full">
-          <div className="max-w-3xl">
-            {/* 태그 */}
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-geosang-teal text-sm font-bold uppercase tracking-[0.3em] mb-6"
-            >
-              프로세스
-            </motion.div>
-            {/* 메인 타이틀 */}
-            <motion.h1
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-5xl md:text-7xl font-light text-white leading-[1.08] mb-8"
-            >
-              자원순환의<br />
-              <span className="text-geosang-teal">새로운 표준</span>을<br />
-              만들어갑니다.
-            </motion.h1>
-            {/* 서브 텍스트 */}
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-lg text-slate-300 font-light leading-relaxed max-w-xl"
-            >
-              현장의 발로 뛰는 정직함과 데이터 기반의 투명한 시스템으로<br />
-              자원의 가치를 극대화합니다.
-            </motion.p>
-          </div>
-        </div>
-
-        {/* 스크롤 인디케이터 */}
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 2.5 }}
-          className="absolute bottom-10 right-12 hidden md:flex flex-col items-center gap-2 opacity-30"
-        >
-          <div className="w-[1px] h-16 bg-gradient-to-b from-white to-transparent" />
-        </motion.div>
-      </section>
-
-      {/* ══════════════════════════════════════
-          ② 통계 배지 (Stats Bar)
-      ══════════════════════════════════════ */}
-      <section className="bg-geosang-deep border-t border-white/10">
-        <div className="container-custom">
-          <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
-            {stats.map((s, i) => (
+    <div ref={containerRef} className="relative h-[600vh] bg-white">
+      {/* 
+          Sticky Container: 
+          뷰포트에 고정되는 부분. 
+          Navbar 높이(h-20 = 80px)를 고려하여 top-20 설정.
+      */}
+      <div className="sticky top-20 h-[calc(100vh-80px)] w-full flex flex-col lg:flex-row overflow-hidden">
+        
+        {/* 좌측: 콘텐츠 영역 */}
+        <div className="w-full lg:w-1/2 h-1/2 lg:h-full flex flex-col justify-center px-8 lg:px-24 bg-white z-20 relative">
+          <div className="relative w-full h-[450px]">
+            {steps.map((step, index) => (
               <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 12 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.08 }}
-                viewport={{ once: true }}
-                className="flex flex-col items-center py-10 px-6 text-center"
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ 
+                  opacity: currentIndex === index ? 1 : 0,
+                  y: currentIndex === index ? 0 : 40,
+                  pointerEvents: currentIndex === index ? 'auto' : 'none',
+                  zIndex: currentIndex === index ? 10 : 0
+                }}
+                transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
+                className="absolute inset-0 flex flex-col justify-center"
               >
-                <div className="text-4xl md:text-5xl font-light text-geosang-teal mb-2">{s.value}</div>
-                <div className="text-xs font-bold uppercase tracking-widest text-white/40">{s.label}</div>
+                <div className="w-16 h-16 rounded-3xl bg-geosang-teal/10 border border-geosang-teal/20 flex items-center justify-center text-geosang-teal mb-10 group-hover:bg-geosang-teal group-hover:text-white transition-all duration-500">
+                  {step.icon}
+                </div>
+                <div className="text-geosang-teal text-xs font-black uppercase tracking-[0.4em] mb-6">{step.step}</div>
+                <h2 className="text-5xl md:text-7xl font-light text-geosang-deep leading-[1.1] mb-6">
+                  {step.title}
+                </h2>
+                <p className="text-xl text-geosang-teal font-bold mb-8">{step.copy}</p>
+                <p className="text-lg text-slate-500 font-light leading-relaxed mb-10 max-w-md">{step.desc}</p>
+                <ul className="space-y-5">
+                  {step.details.map((d, j) => (
+                    <li key={j} className="flex items-start gap-4 group/item">
+                      <div className="w-6 h-6 rounded-full bg-geosang-teal/10 flex items-center justify-center shrink-0 mt-0.5 group-hover/item:bg-geosang-teal transition-colors">
+                        <CheckCircle2 size={14} className="text-geosang-teal group-hover/item:text-white transition-colors" strokeWidth={2.5} />
+                      </div>
+                      <span className="text-slate-600 font-medium tracking-tight">{d}</span>
+                    </li>
+                  ))}
+                </ul>
               </motion.div>
             ))}
           </div>
         </div>
+
+        {/* 우측: 이미지 영역 */}
+        <div className="w-full lg:w-1/2 h-1/2 lg:h-full relative bg-slate-100 overflow-hidden">
+          {steps.map((step, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 1.1 }}
+              animate={{ 
+                opacity: currentIndex === index ? 1 : 0,
+                scale: currentIndex === index ? 1 : 1.1,
+              }}
+              transition={{ duration: 0.9, ease: [0.4, 0, 0.2, 1] }}
+              className="absolute inset-0"
+            >
+              <img
+                src={step.image}
+                alt={step.imageAlt}
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-black/5" />
+            </motion.div>
+          ))}
+          
+          {/* 인디케이터 */}
+          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex gap-4 z-30">
+            {steps.map((_, index) => (
+              <div 
+                key={index}
+                className={`h-1 rounded-full transition-all duration-700 ${
+                  currentIndex === index ? 'w-16 bg-geosang-teal' : 'w-4 bg-white/30'
+                }`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const Process = () => {
+  return (
+    <div className="flex flex-col w-full bg-white font-display pt-20">
+      {/* ════════ Hero ════════ */}
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-geosang-deep text-center">
+        <div className="absolute inset-0 z-0">
+          <img src={heroBg} alt="" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-black/60 z-10" />
+        </div>
+        <div className="relative z-20 container-custom px-4 pt-20">
+          <motion.div 
+            initial={{ opacity: 0, y: 10 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            className="text-geosang-teal text-sm font-bold uppercase tracking-[0.4em] mb-8"
+          >
+            GEOSANG CONNECT™
+          </motion.div>
+          <motion.h1 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ delay: 0.1 }} 
+            className="text-5xl md:text-8xl font-black text-white leading-[1.1] mb-12"
+          >
+            Digitalizing the<br />
+            <span className="text-geosang-teal">Circular Economy</span>
+          </motion.h1>
+          <motion.p 
+            initial={{ opacity: 0, y: 15 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ delay: 0.2 }} 
+            className="text-xl md:text-2xl text-slate-300 font-light leading-relaxed max-w-3xl mx-auto mb-16"
+          >
+            거상자원은 40년의 정직함을 데이터에 담아,<br />
+            기업의 폐기물 관리를 자산의 가치로 전환합니다.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-6"
+          >
+            <button className="bg-geosang-teal text-white hover:bg-white hover:text-geosang-teal px-10 py-5 rounded-full font-bold text-lg transition-all shadow-xl">
+              솔루션 시작하기
+            </button>
+            <button className="flex items-center gap-3 text-white hover:text-geosang-teal transition-colors group">
+              <div className="w-14 h-14 rounded-full border-2 border-white/30 flex items-center justify-center bg-white/10 group-hover:border-geosang-teal transition-all">
+                <div className="w-0 h-0 border-t-[8px] border-t-transparent border-l-[12px] border-l-white border-b-[8px] border-b-transparent ml-1" />
+              </div>
+              <span className="font-bold border-b border-white/30 group-hover:border-geosang-teal">WATCH VIDEO</span>
+            </button>
+          </motion.div>
+        </div>
       </section>
 
-      {/* ══════════════════════════════════════
-          ③ Step 01 / 02 / 03 — 교대 레이아웃
-      ══════════════════════════════════════ */}
-      {steps.map((step, i) => {
-        const isEven = i % 2 === 1; // 짝수 스텝은 이미지가 오른쪽
-        return (
-          <section
-            key={i}
-            className={`section-padding ${isEven ? 'bg-geosang-bg' : 'bg-white'}`}
-          >
-            <div className="container-custom">
-              <div className={`flex flex-col ${isEven ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-16 lg:gap-24 items-center`}>
-                {/* 이미지 영역 */}
-                <motion.div
-                  initial={{ opacity: 0, x: isEven ? 30 : -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6 }}
-                  viewport={{ once: true }}
-                  className="lg:w-1/2"
-                >
-                  <div className="relative">
-                    <div className="aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl">
-                      <img
-                        src={step.image}
-                        alt={step.imageAlt}
-                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
-                      />
-                    </div>
-                    {/* 스텝 번호 배지 */}
-                    <div className="absolute -top-6 -left-6 w-20 h-20 bg-geosang-deep rounded-2xl flex flex-col items-center justify-center shadow-xl">
-                      <div className="text-[10px] font-bold text-geosang-teal uppercase tracking-widest mb-0.5">Step</div>
-                      <div className="text-2xl font-light text-white">{String(i + 1).padStart(2, '0')}</div>
-                    </div>
-                  </div>
-                </motion.div>
-
-                {/* 텍스트 영역 */}
-                <motion.div
-                  initial={{ opacity: 0, x: isEven ? -30 : 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.1 }}
-                  viewport={{ once: true }}
-                  className="lg:w-1/2"
-                >
-                  {/* 아이콘 */}
-                  <div className="w-14 h-14 rounded-2xl bg-geosang-teal/10 border border-geosang-teal/20 flex items-center justify-center text-geosang-teal mb-8">
-                    {step.icon}
-                  </div>
-                  {/* 태그 */}
-                  <div className="text-geosang-teal text-xs font-bold uppercase tracking-[0.25em] mb-4">{step.step}</div>
-                  {/* 제목 */}
-                  <h2 className="text-4xl md:text-5xl font-light text-geosang-deep leading-tight mb-4">
-                    {step.title}
-                  </h2>
-                  {/* 카피 */}
-                  <p className="text-geosang-teal text-base font-medium mb-6 italic">{step.copy}</p>
-                  {/* 설명 */}
-                  <p className="text-lg text-slate-500 font-light leading-relaxed mb-10">{step.desc}</p>
-                  {/* 세부 체크리스트 */}
-                  <ul className="space-y-4">
-                    {step.details.map((d, j) => (
-                      <li key={j} className="flex items-start gap-4">
-                        <CheckCircle2 size={20} className="text-geosang-teal shrink-0 mt-0.5" strokeWidth={1.5} />
-                        <span className="text-slate-600 font-light">{d}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              </div>
-            </div>
-          </section>
-        );
-      })}
-
-      {/* ══════════════════════════════════════
-          ④ Step 04 — Digital Loop (다크 섹션)
-      ══════════════════════════════════════ */}
-      <section className="relative py-32 bg-[#093944] overflow-hidden">
-        {/* 배경 글로우 */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-geosang-teal/5 blur-3xl" />
-        </div>
-
-        <div className="relative z-10 container-custom">
-          <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
-            {/* 좌측: 헤더 */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="lg:w-1/3 lg:sticky lg:top-32"
-            >
-              {/* 아이콘 */}
-              <div className="w-14 h-14 rounded-2xl bg-geosang-teal flex items-center justify-center text-white mb-8 shadow-[0_0_30px_rgba(0,194,181,0.4)]">
-                <BarChart3 size={32} strokeWidth={1.5} />
-              </div>
-              <div className="text-geosang-teal text-xs font-bold uppercase tracking-[0.25em] mb-4">Step 04</div>
-              <h2 className="text-4xl md:text-5xl font-light text-white leading-tight mb-6">
-                Digital<br />Loop
+      {/* ════════ Value Proposition ════════ */}
+      <section className="py-32 bg-white">
+        <div className="container-custom">
+          <div className="flex flex-col lg:flex-row gap-20 items-center">
+            <div className="lg:w-1/2">
+              <div className="text-geosang-teal text-xs font-bold uppercase tracking-[0.3em] mb-6">Enhance Your Program</div>
+              <h2 className="text-4xl md:text-5xl font-light text-geosang-deep leading-tight mb-8">
+                단순 수거를 넘어,<br />
+                <span className="font-bold">비즈니스의 수순함을 극대화합니다.</span>
               </h2>
-              <p className="text-slate-400 font-light leading-relaxed mb-4">
-                자원순환의 완성,<br />디지털 데이터 거버넌스
+              <p className="text-lg text-slate-500 font-light leading-relaxed">
+                전통적인 자원 수집 방식을 디지털화하여 배출부터 최종 정산까지 모든 데이터를 가시화합니다. 
+                거상자원의 전문성은 귀사의 탄소 중립 목표 달성과 비용 최적화를 동시에 실현합니다.
               </p>
-              {/* Coming Soon 배지 */}
-              <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/10 border border-white/10 text-xs font-bold tracking-widest text-geosang-teal">
-                출시 예정
-              </span>
-            </motion.div>
-
-            {/* 우측: 로드맵 타임라인 */}
-            <div className="lg:w-2/3">
-              {/* 인용문 */}
-              <motion.blockquote
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="text-xl md:text-2xl font-light text-white/70 leading-relaxed italic border-l-2 border-geosang-teal pl-8 mb-16"
-              >
-                "우리는 단순히 폐지를 옮기는 것을 넘어, 자원의 흐름을 데이터로 증명하여<br className="hidden md:block" />
-                투명하고 효율적인 순환경제를 선도할 것입니다."
-              </motion.blockquote>
-
-              {/* 로드맵 */}
-              <div className="relative space-y-10">
-                {/* 수직 라인 */}
-                <div className="absolute left-4 top-2 bottom-2 w-[1px] bg-gradient-to-b from-geosang-teal/60 via-geosang-teal/20 to-transparent" />
-
-                {roadmap.map((item, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.1 }}
-                    viewport={{ once: true }}
-                    className={`relative pl-14 py-8 px-10 rounded-2xl border transition-all ${
-                      item.done
-                        ? 'bg-geosang-teal/10 border-geosang-teal/30'
-                        : 'bg-white/5 border-white/10'
-                    }`}
-                  >
-                    {/* 타임라인 닷 */}
-                    <div className={`absolute left-[10px] top-1/2 -translate-y-1/2 w-[18px] h-[18px] rounded-full border-2 z-10 ${
-                      item.done
-                        ? 'bg-geosang-teal border-geosang-teal shadow-[0_0_14px_rgba(0,194,181,0.6)]'
-                        : 'bg-[#093944] border-geosang-teal/40'
-                    }`} />
-
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
-                      <div>
-                        <div className="text-geosang-teal text-xs font-bold uppercase tracking-widest mb-2">{item.phase}</div>
-                        <div className="text-white text-lg font-light">{item.title}</div>
-                      </div>
-                      <div className="md:text-right shrink-0">
-                        <span className={`text-sm font-bold ${item.done ? 'text-geosang-teal' : 'text-slate-500'}`}>
-                          {item.date}
-                        </span>
-                        {item.done && (
-                          <div className="mt-1 text-[10px] font-bold uppercase tracking-widest text-geosang-teal">
-                            ✓ 완료
-                          </div>
-                        )}
-                      </div>
+            </div>
+            <div className="lg:w-1/2 w-full">
+              <div className="space-y-10">
+                {[
+                  { title: 'Real-time Tracking', desc: '모든 수거 차량의 위치와 상태를 실시간으로 모니터링합니다.' },
+                  { title: 'Certified Compliance', desc: '국가 공인 계근 시스템으로 한치의 오차 없는 데이터를 보증합니다.' },
+                  { title: 'Circular Reporting', desc: '기업의 자원순환 성과를 직관적인 ESG 대시보드로 제공합니다.' },
+                ].map((item, i) => (
+                  <div key={i} className="group cursor-default border-b border-slate-100 pb-8 flex justify-between items-start">
+                    <div className="max-w-md">
+                      <h3 className="text-xl font-bold text-geosang-deep mb-3 group-hover:text-geosang-teal transition-colors">{item.title}</h3>
+                      <p className="text-slate-500 font-light">{item.desc}</p>
                     </div>
-                  </motion.div>
+                    <ArrowRight size={24} className="text-slate-300 group-hover:text-geosang-teal group-hover:translate-x-2 transition-all" />
+                  </div>
                 ))}
               </div>
             </div>
@@ -333,39 +279,113 @@ const Process = () => {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════
-          ⑤ CTA Section
-      ══════════════════════════════════════ */}
-      <section className="py-28 bg-geosang-teal relative overflow-hidden">
-        {/* 배경 로고 워터마크 */}
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-          <img
-            src={logoImg}
-            alt=""
-            className="w-[480px] opacity-[0.06] object-contain select-none"
-          />
+      {/* ════════ Stats ════════ */}
+      <section className="bg-slate-50 py-24">
+        <div className="container-custom">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-0 md:divide-x md:divide-slate-200">
+            {stats.map((s, i) => (
+              <div key={i} className="flex flex-col items-center px-6">
+                <div className="text-4xl md:text-6xl font-black text-geosang-deep mb-4 tracking-tighter">{s.value}</div>
+                <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">{s.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
+      </section>
 
-        <div className="relative z-10 container-custom text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <div className="text-white/60 text-xs font-bold uppercase tracking-[0.3em] mb-6">함께하기</div>
-            <h2 className="text-4xl md:text-5xl font-light text-white mb-6 leading-tight">
-              거상자원과 함께<br />자원순환의 미래를 시작하세요.
+      {/* ════════ Sticky Steps ════════ */}
+      <StickySteps />
+
+      {/* ════════ Partnership Success ════════ */}
+      <section className="py-32 bg-white">
+        <div className="container-custom">
+          <div className="text-center max-w-2xl mx-auto mb-20">
+            <div className="text-geosang-teal text-xs font-bold uppercase tracking-[0.3em] mb-6">Social Proof</div>
+            <h2 className="text-4xl font-light text-geosang-deep mb-6">
+              국내 주요 기업이 신뢰하는<br /><span className="font-bold text-geosang-teal">거상자원의 파트너십</span>
             </h2>
-            <p className="text-white/70 text-lg font-light mb-12 max-w-xl mx-auto">
-              40년의 현장 경험과 최신 디지털 기술로, 여러분의 비즈니스에 가장 투명하고 효율적인 자원순환 솔루션을 제공합니다.
-            </p>
-            <button
-              onClick={() => (window.location.hash = 'get-started')}
-              className="bg-white text-geosang-teal hover:bg-geosang-bg font-bold py-5 px-14 rounded-full text-lg shadow-2xl transition-all hover:scale-105 active:scale-95 flex items-center gap-3 mx-auto"
-            >
-              함께하기 <ArrowRight size={22} />
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {partners.map((partner, i) => (
+              <div key={i} className="bg-slate-50 rounded-3xl p-10 hover:bg-geosang-teal/5 transition-all group">
+                <div className="h-16 mb-10 overflow-hidden rounded-lg grayscale group-hover:grayscale-0 transition-all opacity-60 group-hover:opacity-100">
+                  <img src={partner.logo} alt={partner.name} className="w-full h-full object-cover" />
+                </div>
+                <h3 className="text-2xl font-bold text-geosang-deep mb-4">{partner.name}</h3>
+                <p className="text-slate-500 font-light mb-8">{partner.desc}</p>
+                <div className="inline-flex items-center gap-2 text-geosang-teal font-bold text-sm tracking-wider uppercase border-b border-geosang-teal pb-1">
+                  Case Study <ArrowRight size={14} />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ════════ Digital Loop ════════ */}
+      <section className="relative py-40 bg-geosang-deep overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <img src={logoImg} alt="" className="w-full h-full object-contain scale-150" />
+        </div>
+        <div className="container-custom relative z-10">
+          <div className="flex flex-col lg:flex-row gap-20 items-start">
+            <div className="lg:w-1/3 lg:sticky lg:top-40">
+              <div className="w-16 h-16 rounded-3xl bg-geosang-teal flex items-center justify-center text-white mb-10 shadow-xl">
+                <BarChart3 size={36} strokeWidth={1} />
+              </div>
+              <div className="text-geosang-teal text-xs font-bold uppercase tracking-[0.3em] mb-6">Step 04 / Future</div>
+              <h2 className="text-5xl font-light text-white leading-[1.1] mb-8">
+                Digital<br />
+                <span className="font-bold">Loop</span>
+              </h2>
+              <p className="text-slate-400 font-light leading-relaxed mb-8">
+                데이터가 흐르고 환경이 살아나는 시대를 위해,<br />
+                인공지능 통합 거버넌스 시스템을 구축합니다.
+              </p>
+              <div className="inline-block px-5 py-2 rounded-full border border-geosang-teal/50 bg-geosang-teal/20 text-[11px] font-bold text-geosang-teal tracking-widest uppercase">Coming Soon 2026</div>
+            </div>
+
+            <div className="lg:w-2/3 w-full">
+              <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-10 md:p-16 border border-white/10 mb-20 shadow-2xl">
+                <p className="text-2xl md:text-3xl font-light text-white leading-relaxed italic mb-12 opacity-80">
+                  "우리는 자원순환의 가시성을 확보하여 비즈니스의 투명성을 높입니다."
+                </p>
+                <div className="space-y-6">
+                  {roadmap.map((item, i) => (
+                    <motion.div key={i} whileHover={{ x: 10, backgroundColor: 'rgba(255,255,255,0.08)' }} className={`p-8 rounded-2xl border flex items-center justify-between gap-6 transition-all ${item.done ? 'bg-geosang-teal/20 border-geosang-teal/40' : 'bg-white/5 border-white/10'}`}>
+                      <div className="flex items-center gap-6">
+                        <div className={`w-3 h-3 rounded-full ${item.done ? 'bg-geosang-teal animate-pulse shadow-[0_0_10px_rgba(0,194,181,1)]' : 'bg-white/20'}`} />
+                        <div>
+                          <div className="text-[10px] font-bold text-geosang-teal uppercase tracking-widest mb-1">{item.phase}</div>
+                          <div className="text-lg font-medium text-white">{item.title}</div>
+                        </div>
+                      </div>
+                      <div className="text-right hidden sm:block">
+                        <div className="text-xs font-bold text-white/40 mb-1">{item.date}</div>
+                        {item.done && <div className="text-[10px] text-geosang-teal font-black">ACTIVE</div>}
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ════════ CTA ════════ */}
+      <section className="py-40 bg-white relative overflow-hidden text-center">
+        <div className="container-custom relative z-10">
+          <h2 className="text-5xl md:text-7xl font-bold text-geosang-deep mb-12 leading-tight">새로운 순환경제의 시작,<br /><span className="text-geosang-teal">거상자원이 함께합니다.</span></h2>
+          <p className="text-slate-500 text-xl font-light mb-16 max-w-2xl mx-auto">전국적인 네트워크와 디지털 시스템으로 비즈니스의 자원순환 가치를 높이세요.</p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+            <button onClick={() => window.location.hash = 'get-started'} className="bg-geosang-teal text-white hover:bg-geosang-deep px-16 py-7 rounded-full font-bold text-xl transition-all shadow-2xl flex items-center gap-4">
+              파트너십 문의하기 <ArrowRight />
             </button>
-          </motion.div>
+            <button className="text-geosang-deep font-bold text-xl border-b-2 border-geosang-deep pb-1 hover:text-geosang-teal hover:border-geosang-teal transition-all">
+              플랫폼 데모 보기
+            </button>
+          </div>
         </div>
       </section>
     </div>
