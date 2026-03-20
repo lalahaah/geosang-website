@@ -17,16 +17,16 @@ const FormSuccessScreen: FC<FormSuccessScreenProps> = ({ h2, paragraph, btnLabel
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="bg-geosang-bg p-12 rounded-3xl border border-slate-100 shadow-xl"
+          className="bg-geosang-bg p-6 sm:p-12 rounded-3xl border border-slate-100 shadow-xl"
         >
           <div className="w-20 h-20 bg-geosang-teal/10 rounded-full flex items-center justify-center mx-auto mb-8">
             <CheckCircle2 size={40} className="text-geosang-teal" />
           </div>
-          <h2 className="text-3xl font-light text-geosang-deep mb-4">{h2}</h2>
+          <h2 className="text-2xl sm:text-3xl font-light text-geosang-deep mb-4">{h2}</h2>
           <p className="text-slate-500 font-light mb-8 leading-relaxed">{paragraph}</p>
           <button
             onClick={handleHome}
-            className="px-8 py-3 bg-geosang-deep text-white rounded-full hover:bg-geosang-teal transition-all font-light"
+            className="w-full sm:w-auto px-8 py-3 bg-geosang-deep text-white rounded-full hover:bg-geosang-teal transition-all font-light"
           >
             {btnLabel}
           </button>

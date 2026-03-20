@@ -11,10 +11,10 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
   const t = translations[lang].footer;
 
   return (
-    <footer className="bg-geosang-dark text-white pt-24 pb-12 font-display font-light">
+    <footer className="bg-geosang-dark text-white pt-12 sm:pt-24 pb-12 font-display font-light">
       <div className="container-custom">
         {/* Top Footer: Logo, Socials, Newsletter */}
-        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-12 pb-16 border-b border-white/10 mb-16">
+        <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 sm:gap-12 pb-16 border-b border-white/10 mb-16">
           <div className="flex items-center gap-3 group cursor-pointer" onClick={() => window.location.href = '/'}>
             <div className="group-hover:rotate-12 transition-transform w-14 h-14 flex items-center justify-center">
               <img src={logo} alt="GEOSANG RESOURCES" className="w-full h-full object-contain filter-geosang-teal" />
@@ -39,7 +39,7 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
         </div>
 
         {/* Middle Footer: Links */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 mb-20">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 sm:gap-12 mb-20">
           <div className="col-span-2 lg:col-span-2">
             <h5 className="text-[#00C2B5] text-xs font-bold tracking-[0.2em] uppercase mb-8">{t.aboutTitle}</h5>
             <p className="text-white/50 text-sm leading-relaxed max-w-sm whitespace-pre-line">

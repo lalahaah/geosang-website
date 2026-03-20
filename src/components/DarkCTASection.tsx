@@ -28,9 +28,9 @@ const DarkCTASection: FC<DarkCTASectionProps> = ({
   const handlePrimary = onPrimaryClick ?? (() => { window.location.hash = 'get-started'; });
 
   return (
-    <section className={`section-padding ${bg} relative overflow-hidden text-center`}>
+    <section className={`section-padding ${bg} relative overflow-hidden text-center py-16 md:py-24 px-4 md:px-12`}>
       <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
-        <img src={logoImg} alt="" className="w-[600px] opacity-[0.04] object-contain select-none" />
+        <img src={logoImg} alt="" className="w-[300px] sm:w-[600px] opacity-[0.04] object-contain select-none" />
       </div>
       <div className="container-custom relative z-10 py-20">
         <motion.div
@@ -39,7 +39,7 @@ const DarkCTASection: FC<DarkCTASectionProps> = ({
           viewport={{ once: true }}
           className="max-w-3xl mx-auto"
         >
-          <h2 className="text-4xl md:text-5xl font-light text-white mb-10 leading-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-10 leading-tight">
             {h2}
             {h2Teal && <><br /><span className="text-geosang-teal italic">{h2Teal}</span></>}
           </h2>
@@ -49,14 +49,14 @@ const DarkCTASection: FC<DarkCTASectionProps> = ({
           <div className={`flex ${secondaryBtn ? 'flex-col sm:flex-row items-center justify-center gap-6' : 'justify-center'}`}>
             <button
               onClick={handlePrimary}
-              className="px-12 py-5 bg-geosang-teal hover:bg-geosang-teal-dark text-white font-bold rounded-full text-xl transition-all shadow-2xl shadow-geosang-teal/20 active:scale-95 flex items-center gap-3"
+              className="w-full sm:w-auto px-12 py-5 bg-geosang-teal hover:bg-geosang-teal-dark text-white font-bold rounded-full text-xl transition-all shadow-2xl shadow-geosang-teal/20 active:scale-95 flex items-center gap-3"
             >
               {primaryBtn} <ArrowRight size={24} />
             </button>
             {secondaryBtn && (
               <button
                 onClick={onSecondaryClick}
-                className="px-12 py-5 border border-white/30 text-white hover:bg-white/10 rounded-full font-bold text-xl transition-all"
+                className="w-full sm:w-auto px-12 py-5 border border-white/30 text-white hover:bg-white/10 rounded-full font-bold text-xl transition-all"
               >
                 {secondaryBtn}
               </button>

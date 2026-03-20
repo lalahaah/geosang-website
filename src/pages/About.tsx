@@ -47,7 +47,7 @@ const About: FC<AboutProps> = ({ lang }) => {
           <div className="flex flex-col lg:flex-row gap-20 items-center">
             <div className="lg:w-1/2">
               <div className="text-geosang-teal text-sm font-bold uppercase tracking-[0.2em] mb-6">{t.story.tag}</div>
-              <h2 className="text-4xl md:text-5xl font-light mb-10 leading-tight text-geosang-deep">
+              <h2 className="text-2xl md:text-4xl lg:text-5xl font-light mb-10 leading-tight text-geosang-deep">
                 {t.story.h2}
               </h2>
               <div className="space-y-6 text-lg text-slate-500 font-light leading-relaxed">
@@ -65,7 +65,7 @@ const About: FC<AboutProps> = ({ lang }) => {
                 />
               </div>
               <div className="absolute -bottom-10 -left-10 bg-geosang-deep p-12 rounded-3xl text-white hidden md:block">
-                <div className="text-5xl font-light mb-2 text-geosang-teal">40+</div>
+                <div className="text-3xl sm:text-5xl font-light mb-2 text-geosang-teal">40+</div>
                 <div className="text-sm font-bold uppercase tracking-widest text-white/50">{t.story.badge}</div>
               </div>
             </div>
@@ -88,7 +88,7 @@ const About: FC<AboutProps> = ({ lang }) => {
             </div>
 
             <div className="lg:w-2/3">
-              <div className="space-y-16">
+              <div className="space-y-8 sm:space-y-16">
                 {t.history.items.map((step: { year: string; title: string; desc: string }, i: number) => (
                   <motion.div
                     key={i}
@@ -157,7 +157,7 @@ const About: FC<AboutProps> = ({ lang }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-geosang-deep">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-12 text-geosang-deep">
             {t.values.items.map((value: { num: string; title: string; desc: string }, i: number) => (
               <motion.div
                 key={i}
@@ -165,7 +165,7 @@ const About: FC<AboutProps> = ({ lang }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
                 viewport={{ once: true }}
-                className="flex gap-10 p-12 bg-white rounded-3xl border border-slate-100 group hover:shadow-xl transition-all"
+                className="flex gap-10 p-6 sm:p-12 bg-white rounded-3xl border border-slate-100 group hover:shadow-xl transition-all"
               >
                 <div className="flex flex-col items-center">
                   <div className="text-4xl font-light text-slate-200 mb-6 group-hover:text-geosang-teal transition-colors">{value.num}</div>
@@ -190,7 +190,7 @@ const About: FC<AboutProps> = ({ lang }) => {
             <h2 className="text-4xl md:text-5xl font-light leading-tight">{t.leadership.h2}</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-12">
             {t.leadership.members.map((member: { name: string; role: string; desc: string }, i: number) => (
               <div key={i} className="group">
                 <div className="aspect-square bg-slate-100 rounded-3xl mb-8 overflow-hidden relative">
@@ -209,7 +209,7 @@ const About: FC<AboutProps> = ({ lang }) => {
       {/* ─── Awards & Partners (Mockup) ─── */}
       <section className="py-24 border-t border-slate-100 bg-white">
         <div className="container-custom">
-          <div className="flex flex-wrap justify-between items-center gap-12 opacity-30 grayscale contrast-125">
+          <div className="flex flex-wrap justify-between items-center gap-6 sm:gap-12 opacity-30 grayscale contrast-125">
             {t.awards.map((award: string, i: number) => {
               const icons = [<Award key={i} />, <Recycle key={i} />, <Target key={i} />, <Globe key={i} />];
               return (

@@ -71,7 +71,7 @@ const Process: React.FC<ProcessProps> = ({ lang }) => {
           <div className="flex flex-col lg:flex-row gap-24 items-start">
             <div className="lg:w-1/2 lg:sticky lg:top-40">
               <div className="text-geosang-teal text-xs font-bold uppercase tracking-[0.4em] mb-8">{t.valueProp.tag}</div>
-              <h2 className="text-5xl md:text-6xl font-light text-geosang-deep leading-tight mb-10">
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-light text-geosang-deep leading-tight mb-10">
                 {t.valueProp.h2}<br />
                 <span className="text-geosang-teal tracking-tighter">{t.valueProp.h2Teal}</span>
               </h2>
@@ -104,10 +104,10 @@ const Process: React.FC<ProcessProps> = ({ lang }) => {
       {/* ════════ Stats ════════ */}
       <section className="bg-slate-50 py-24">
         <div className="container-custom">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-0 md:divide-x md:divide-slate-200">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-0 md:divide-x md:divide-slate-200">
             {stats.map((s: any, i: number) => (
               <div key={i} className="flex flex-col items-center px-6">
-                <div className="text-4xl md:text-6xl font-light text-geosang-deep mb-4 tracking-tighter">{s.value}</div>
+                <div className="text-2xl md:text-4xl lg:text-6xl font-light text-geosang-deep mb-4 tracking-tighter">{s.value}</div>
                 <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">{s.label}</div>
               </div>
             ))}

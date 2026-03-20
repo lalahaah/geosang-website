@@ -67,7 +67,7 @@ const Contact: FC<ContactProps> = ({ lang }) => {
         <div className="container-custom max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <div className="text-geosang-teal text-sm font-bold uppercase tracking-[0.2em] mb-4">{t.form.sectionTag}</div>
-            <h2 className="text-4xl md:text-5xl font-light text-geosang-deep mb-6 leading-tight">
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-light text-geosang-deep mb-6 leading-tight">
               {t.form.sectionTitle_part1} <br />{t.form.sectionTitle_part2}
             </h2>
             <p className="text-lg text-slate-500 font-light">
@@ -92,7 +92,7 @@ const Contact: FC<ContactProps> = ({ lang }) => {
               </button>
             </div>
 
-            <form className="p-8 md:p-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <form className="p-4 sm:p-8 md:p-12 grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="flex flex-col gap-2">
                 <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t.form.companyLabel}</label>
                 <input
@@ -148,19 +148,19 @@ const Contact: FC<ContactProps> = ({ lang }) => {
         <div className="container-custom">
           <div className="text-center mb-16">
             <div className="text-geosang-teal text-sm font-bold uppercase tracking-[0.2em] mb-4">{t.locations.sectionTag}</div>
-            <h2 className="text-4xl md:text-5xl font-light text-geosang-deep leading-tight">
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-light text-geosang-deep leading-tight">
               {t.locations.sectionTitle_part1} <br />{t.locations.sectionTitle_part2}
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-10">
             {/* Address Cards */}
             <div className="flex flex-col gap-6">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="p-8 bg-white rounded-3xl border border-slate-100 shadow-sm"
+                className="p-4 sm:p-8 bg-white rounded-3xl border border-slate-100 shadow-sm"
               >
                 <div className="flex items-center gap-3 mb-4">
                   <MapPin size={20} className="text-geosang-teal" />
@@ -180,7 +180,7 @@ const Contact: FC<ContactProps> = ({ lang }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.1 }}
-                className="p-8 bg-white rounded-3xl border border-slate-100 shadow-sm"
+                className="p-4 sm:p-8 bg-white rounded-3xl border border-slate-100 shadow-sm"
               >
                 <div className="flex items-center gap-3 mb-4">
                   <MapPin size={20} className="text-geosang-teal" />
@@ -194,7 +194,7 @@ const Contact: FC<ContactProps> = ({ lang }) => {
 
             {/* Map + Badges */}
             <div className="lg:col-span-2 flex flex-col gap-8">
-              <div className="w-full h-[300px] bg-slate-100 rounded-3xl overflow-hidden relative shadow-inner">
+              <div className="w-full h-[200px] sm:h-[300px] bg-slate-100 rounded-3xl overflow-hidden relative shadow-inner">
                 <div
                   className="absolute inset-0 grayscale opacity-40 bg-cover bg-center"
                   style={{ backgroundImage: "url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&q=80&w=1000')" }}
@@ -212,7 +212,7 @@ const Contact: FC<ContactProps> = ({ lang }) => {
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  className="p-8 bg-white rounded-3xl border border-slate-100 shadow-sm flex gap-5 items-start"
+                  className="p-4 sm:p-8 bg-white rounded-3xl border border-slate-100 shadow-sm flex gap-5 items-start"
                 >
                   <div className="text-geosang-teal mt-1"><Leaf size={28} /></div>
                   <div>
@@ -227,7 +227,7 @@ const Contact: FC<ContactProps> = ({ lang }) => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.1 }}
-                  className="p-8 bg-white rounded-3xl border border-slate-100 shadow-sm flex gap-5 items-start"
+                  className="p-4 sm:p-8 bg-white rounded-3xl border border-slate-100 shadow-sm flex gap-5 items-start"
                 >
                   <div className="text-geosang-teal mt-1"><ShieldCheck size={28} /></div>
                   <div>

@@ -35,9 +35,9 @@ const StickyScrollViewer: FC<StickyScrollViewerProps> = ({ items, totalHeightVh 
 
   return (
     <div ref={containerRef} style={{ height: `${heightVh}vh` }} className="relative">
-      <div className="sticky top-20 h-[calc(100vh-80px)] w-full flex overflow-hidden">
+      <div className="md:sticky top-20 min-h-screen md:h-[calc(100vh-80px)] w-full flex flex-col md:flex-row overflow-hidden">
         {/* Left: text */}
-        <div className="w-[42%] h-full bg-white flex flex-col px-12 xl:px-20 py-12 relative">
+        <div className="w-full md:w-[42%] h-64 md:h-full bg-white flex flex-col px-4 sm:px-12 xl:px-20 py-12 relative">
           {/* Counter + progress */}
           <div className="flex items-center gap-4 mb-auto pb-8">
             <span className="text-[10px] tracking-[0.35em] text-slate-400 uppercase font-medium whitespace-nowrap">
@@ -69,7 +69,7 @@ const StickyScrollViewer: FC<StickyScrollViewerProps> = ({ items, totalHeightVh 
                   </div>
                   <span className="text-geosang-teal text-[10px] font-medium tracking-[0.35em] uppercase">{item.step}</span>
                 </div>
-                <h2 className="text-4xl xl:text-5xl font-light text-geosang-deep leading-[1.15] mb-4">{item.title}</h2>
+                <h2 className="text-2xl sm:text-4xl xl:text-5xl font-light text-geosang-deep leading-[1.15] mb-4">{item.title}</h2>
                 <p className="text-sm text-geosang-teal font-light tracking-wide mb-5">{item.copy}</p>
                 <div className="w-8 h-px bg-slate-200 mb-5" />
                 <p className="text-sm text-slate-400 font-light leading-relaxed mb-8 max-w-sm">{item.desc}</p>
@@ -96,7 +96,7 @@ const StickyScrollViewer: FC<StickyScrollViewerProps> = ({ items, totalHeightVh 
         </div>
 
         {/* Right: images */}
-        <div className="w-[58%] h-full relative bg-slate-100 overflow-hidden">
+        <div className="w-full md:w-[58%] h-full relative bg-slate-100 overflow-hidden">
           {items.map((item, index) => (
             <motion.div
               key={index}

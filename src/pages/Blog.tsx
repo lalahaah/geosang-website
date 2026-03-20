@@ -115,7 +115,7 @@ const Blog: React.FC<BlogProps> = ({ lang }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-5xl md:text-6xl font-light text-white leading-[1.1] mb-6"
+            className="text-3xl md:text-5xl lg:text-6xl font-light text-white leading-[1.1] mb-6"
           >
             {t.hero.h1}
           </motion.h1>
@@ -167,7 +167,7 @@ const Blog: React.FC<BlogProps> = ({ lang }) => {
               {t.emptyLabel || '해당 카테고리의 포스트가 없습니다.'}
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-10">
               {visible.map((post, i) => (
                 <motion.div
                   key={`${post.title}-${i}`}
@@ -177,7 +177,7 @@ const Blog: React.FC<BlogProps> = ({ lang }) => {
                   viewport={{ once: true }}
                   className="group cursor-pointer"
                 >
-                  <div className="relative aspect-[16/10] overflow-hidden rounded-2xl mb-6">
+                  <div className="relative aspect-[16/10] overflow-hidden rounded-2xl mb-3 sm:mb-6">
                     <img
                       src={post.image}
                       alt={post.title}

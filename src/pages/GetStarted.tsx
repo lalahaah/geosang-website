@@ -1,5 +1,5 @@
 import { type Lang, translations } from '../translations';
-import { type FC, useState } from 'react';
+import { type FC, useState, type FormEvent } from 'react';
 import { motion } from 'framer-motion';
 import { Building2, Store, Truck, ChevronDown } from 'lucide-react';
 import FormSuccessScreen from '../components/FormSuccessScreen';
@@ -15,7 +15,7 @@ const GetStarted: FC<GetStartedProps> = ({ lang }) => {
   const roleIcons = [<Building2 size={24} />, <Store size={24} />, <Truck size={24} />];
   const roleIds = ['enterprise', 'independent', 'hauler'];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -41,7 +41,7 @@ const GetStarted: FC<GetStartedProps> = ({ lang }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-5xl md:text-6xl font-light text-white mb-6"
+            className="text-3xl md:text-5xl lg:text-6xl font-light text-white mb-6"
           >
             {t.hero.h1}
           </motion.h1>
@@ -70,7 +70,7 @@ const GetStarted: FC<GetStartedProps> = ({ lang }) => {
                     key={roleIds[i]}
                     type="button"
                     onClick={() => setUserType(roleIds[i] as any)}
-                    className={`p-8 rounded-2xl border-2 text-left transition-all flex flex-col items-start gap-4 ${
+                    className={`p-4 sm:p-8 rounded-2xl border-2 text-left transition-all flex flex-col items-start gap-4 ${
                       userType === roleIds[i]
                         ? 'border-geosang-teal bg-geosang-teal/5 shadow-md'
                         : 'border-slate-100 hover:border-geosang-teal/30 hover:bg-slate-50'
@@ -89,10 +89,10 @@ const GetStarted: FC<GetStartedProps> = ({ lang }) => {
             </div>
 
             {/* About You Section */}
-            <div className="bg-white rounded-3xl p-8 md:p-12 border border-slate-100 shadow-sm space-y-8">
+            <div className="bg-white rounded-3xl p-4 sm:p-8 md:p-12 border border-slate-100 shadow-sm space-y-8">
               <h2 className="text-2xl font-light text-geosang-deep border-b border-slate-50 pb-6 italic">{t.aboutYou.title}</h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
                 <div className="space-y-2">
                   <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t.aboutYou.lastName}</label>
                   <input required type="text" className="w-full px-4 py-3 bg-slate-50 border-none rounded-lg focus:ring-2 focus:ring-geosang-teal transition-all outline-none" />
@@ -103,7 +103,7 @@ const GetStarted: FC<GetStartedProps> = ({ lang }) => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
                 <div className="space-y-2">
                   <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t.aboutYou.email}</label>
                   <input required type="email" className="w-full px-4 py-3 bg-slate-50 border-none rounded-lg focus:ring-2 focus:ring-geosang-teal transition-all outline-none" />
@@ -116,10 +116,10 @@ const GetStarted: FC<GetStartedProps> = ({ lang }) => {
             </div>
 
             {/* Your Business Section */}
-            <div className="bg-white rounded-3xl p-8 md:p-12 border border-slate-100 shadow-sm space-y-8">
+            <div className="bg-white rounded-3xl p-4 sm:p-8 md:p-12 border border-slate-100 shadow-sm space-y-8">
               <h2 className="text-2xl font-light text-geosang-deep border-b border-slate-50 pb-6 italic">{t.yourBusiness.title}</h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
                 <div className="space-y-2">
                   <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t.yourBusiness.company}</label>
                   <input required type="text" className="w-full px-4 py-3 bg-slate-50 border-none rounded-lg focus:ring-2 focus:ring-geosang-teal transition-all outline-none" />
@@ -157,7 +157,7 @@ const GetStarted: FC<GetStartedProps> = ({ lang }) => {
               <button
                 type="submit"
                 disabled={!userType}
-                className={`px-16 py-5 rounded-full text-lg font-bold transition-all shadow-lg hover:shadow-2xl active:scale-95 ${
+                className={`w-full sm:w-auto px-16 py-5 rounded-full text-lg font-bold transition-all shadow-lg hover:shadow-2xl active:scale-95 ${
                   userType
                     ? 'bg-geosang-teal text-white hover:bg-geosang-deep'
                     : 'bg-slate-200 text-slate-400 cursor-not-allowed'

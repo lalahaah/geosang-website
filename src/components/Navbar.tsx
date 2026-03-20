@@ -124,7 +124,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="absolute top-full left-0 w-full bg-white border-b border-slate-100 p-8 lg:hidden shadow-xl animate-in slide-in-from-top duration-300">
+        <div className="absolute top-full left-0 w-full bg-white border-b border-slate-100 p-4 sm:p-8 lg:hidden shadow-xl animate-in slide-in-from-top duration-300">
           <div className="flex flex-col gap-6">
             {navLinks.map((link) => (
               <a 

@@ -97,7 +97,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-5xl md:text-7xl font-light text-white leading-[1.1] mb-10 max-w-4xl whitespace-pre-line"
+            className="text-3xl md:text-5xl lg:text-7xl font-light text-white leading-[1.1] mb-10 max-w-4xl whitespace-pre-line"
           >
             {lang === 'ko' ? (
               <>
@@ -115,7 +115,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="text-lg md:text-xl text-white/60 mb-12 leading-relaxed max-w-2xl whitespace-pre-line"
+            className="text-base md:text-lg lg:text-xl text-white/60 mb-12 leading-relaxed max-w-2xl whitespace-pre-line"
           >
             {t.hero.description}
           </motion.p>
@@ -150,7 +150,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.1 }}
                 viewport={{ once: true }}
-                className="text-4xl md:text-5xl font-light leading-tight text-geosang-deep mb-8 whitespace-pre-line"
+                className="text-2xl md:text-4xl lg:text-5xl font-light leading-tight text-geosang-deep mb-8 whitespace-pre-line"
               >
                 {t.whatWeDo.title}
               </motion.h2>
@@ -191,7 +191,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.1, duration: 0.5 }}
                     viewport={{ once: true }}
-                    className="w-full bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg transition-all flex flex-col md:flex-row items-start md:items-center gap-8"
+                    className="w-full bg-white p-4 sm:p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg transition-all flex flex-col md:flex-row items-start md:items-center gap-8"
                   >
                     <div className="w-16 h-16 shrink-0 bg-geosang-bg rounded-2xl flex items-center justify-center text-geosang-teal shadow-inner">
                       {i === 0 && <Factory size={32} />}
@@ -499,7 +499,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-10">
             {[
               {
                 // 한글 목업 데이터로 변경
@@ -572,7 +572,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
 
 
       {/* Floating CTA */}
-      <div className="fixed bottom-12 right-12 z-[200]">
+      <div className="fixed bottom-6 right-6 sm:bottom-12 sm:right-12 z-[200]">
         <motion.button
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}

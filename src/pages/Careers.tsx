@@ -68,7 +68,7 @@ const Careers: FC<CareersProps> = ({ lang }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-5xl md:text-6xl font-light text-white mb-6"
+            className="text-3xl md:text-5xl lg:text-6xl font-light text-white mb-6"
           >
             {t.hero.h1}
           </motion.h1>
@@ -99,7 +99,7 @@ const Careers: FC<CareersProps> = ({ lang }) => {
                     key={roleIds[i]}
                     type="button"
                     onClick={() => setRole(roleIds[i] as RoleType)}
-                    className={`p-8 rounded-2xl border-2 text-left transition-all flex flex-col items-start gap-4 ${
+                    className={`p-4 sm:p-8 rounded-2xl border-2 text-left transition-all flex flex-col items-start gap-4 ${
                       role === roleIds[i]
                         ? 'border-geosang-teal bg-geosang-teal/5 shadow-md'
                         : 'border-slate-100 hover:border-geosang-teal/30 hover:bg-slate-50'
@@ -118,10 +118,10 @@ const Careers: FC<CareersProps> = ({ lang }) => {
             </div>
 
             {/* Personal information */}
-            <div className="bg-white rounded-3xl p-8 md:p-12 border border-slate-100 shadow-sm space-y-8">
+            <div className="bg-white rounded-3xl p-4 sm:p-8 md:p-12 border border-slate-100 shadow-sm space-y-8">
               <h2 className="text-2xl font-light text-geosang-deep border-b border-slate-50 pb-6 italic">{t.personal.title}</h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
                 <div className="space-y-2">
                   <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t.personal.lastName}</label>
                   <input required type="text" className="w-full px-4 py-3 bg-slate-50 border-none rounded-lg focus:ring-2 focus:ring-geosang-teal transition-all outline-none" />
@@ -132,7 +132,7 @@ const Careers: FC<CareersProps> = ({ lang }) => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
                 <div className="space-y-2">
                   <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t.personal.email}</label>
                   <input required type="email" className="w-full px-4 py-3 bg-slate-50 border-none rounded-lg focus:ring-2 focus:ring-geosang-teal transition-all outline-none" />
@@ -150,10 +150,10 @@ const Careers: FC<CareersProps> = ({ lang }) => {
             </div>
 
             {/* Job information */}
-            <div className="bg-white rounded-3xl p-8 md:p-12 border border-slate-100 shadow-sm space-y-8">
+            <div className="bg-white rounded-3xl p-4 sm:p-8 md:p-12 border border-slate-100 shadow-sm space-y-8">
               <h2 className="text-2xl font-light text-geosang-deep border-b border-slate-50 pb-6 italic">{t.jobInfo.title}</h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
                 <div className="space-y-2">
                   <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t.jobInfo.careerType}</label>
                   <div className="relative">
@@ -183,7 +183,7 @@ const Careers: FC<CareersProps> = ({ lang }) => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
                 <div className="space-y-2">
                   <label className="block text-[10px] font-bold text-slate-400 uppercase tracking-widest">{t.jobInfo.education}</label>
                   <div className="relative">
@@ -219,7 +219,7 @@ const Careers: FC<CareersProps> = ({ lang }) => {
             </div>
 
             {/* Self introduction */}
-            <div className="bg-white rounded-3xl p-8 md:p-12 border border-slate-100 shadow-sm space-y-8">
+            <div className="bg-white rounded-3xl p-4 sm:p-8 md:p-12 border border-slate-100 shadow-sm space-y-8">
               <h2 className="text-2xl font-light text-geosang-deep border-b border-slate-50 pb-6 italic">{t.intro.title}</h2>
 
               <div className="space-y-2">
@@ -257,7 +257,7 @@ const Careers: FC<CareersProps> = ({ lang }) => {
               <button
                 type="submit"
                 disabled={!role || !career}
-                className={`px-16 py-5 rounded-full text-lg font-bold transition-all shadow-lg hover:shadow-2xl active:scale-95 ${
+                className={`px-16 py-5 rounded-full text-lg font-bold transition-all shadow-lg hover:shadow-2xl active:scale-95 w-full sm:w-auto ${
                   role && career
                     ? 'bg-geosang-teal text-white hover:bg-geosang-deep'
                     : 'bg-slate-200 text-slate-400 cursor-not-allowed'

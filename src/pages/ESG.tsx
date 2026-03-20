@@ -148,7 +148,7 @@ const ESG: FC<ESGProps> = ({ lang }) => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 }}
-            className="text-5xl md:text-7xl font-light text-white leading-[1.1] mb-10 max-w-4xl mx-auto"
+            className="text-3xl md:text-5xl lg:text-7xl font-light text-white leading-[1.1] mb-10 max-w-4xl mx-auto"
           >
             {t.hero.h1}<br />
             <span className="text-geosang-teal">{t.hero.h1Teal}</span>
@@ -207,7 +207,7 @@ const ESG: FC<ESGProps> = ({ lang }) => {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.1 }}
                 viewport={{ once: true }}
-                className="text-4xl md:text-5xl font-light text-geosang-deep leading-tight mb-8"
+                className="text-2xl md:text-4xl lg:text-5xl font-light text-geosang-deep leading-tight mb-8"
               >
                 {t.declaration.h2}
               </motion.h2>
@@ -231,7 +231,7 @@ const ESG: FC<ESGProps> = ({ lang }) => {
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.1 }}
                   viewport={{ once: true }}
-                  className="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg transition-all flex flex-col md:flex-row items-start gap-7"
+                  className="bg-white p-4 sm:p-8 rounded-3xl border border-slate-100 shadow-sm hover:shadow-lg transition-all flex flex-col md:flex-row items-start gap-7"
                 >
                   <div className="w-14 h-14 shrink-0 bg-geosang-bg rounded-2xl flex items-center justify-center text-geosang-teal">
                     {item.icon}
@@ -252,7 +252,7 @@ const ESG: FC<ESGProps> = ({ lang }) => {
         <div className="container-custom">
           <div className="text-center mb-20">
             <div className="text-geosang-teal text-sm font-medium uppercase tracking-[0.25em] mb-5">Three Pillars</div>
-            <h2 className="text-4xl md:text-5xl font-light leading-tight">
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-light leading-tight">
               {lang === 'ko' ? (
                 <>E · S · G, 세 가지 기준으로<br />경영을 평가합니다</>
               ) : (
@@ -269,7 +269,7 @@ const ESG: FC<ESGProps> = ({ lang }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.15 }}
                 viewport={{ once: true }}
-                className={`relative p-10 rounded-3xl border ${pillar.border} bg-white/5 hover:bg-white/8 transition-all group`}
+                className={`relative p-6 sm:p-10 rounded-3xl border ${pillar.border} bg-white/5 hover:bg-white/8 transition-all group`}
               >
                 {/* 대문자 */}
                 <div className={`text-[100px] font-black leading-none ${pillar.color} opacity-10 absolute -top-4 -right-2 select-none pointer-events-none`}>
@@ -299,7 +299,7 @@ const ESG: FC<ESGProps> = ({ lang }) => {
       {/* ════════ 환경 임팩트 (이미지 + 텍스트) ════════ */}
       <section className="section-padding bg-white overflow-hidden">
         <div className="container-custom">
-          <div className="flex flex-col lg:flex-row gap-20 items-center">
+          <div className="flex flex-col lg:flex-row gap-8 sm:gap-20 items-center">
             {/* 이미지 */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -338,7 +338,7 @@ const ESG: FC<ESGProps> = ({ lang }) => {
               className="lg:w-1/2"
             >
               <div className="text-geosang-teal text-sm font-medium uppercase tracking-[0.2em] mb-6">Environmental Impact</div>
-              <h2 className="text-4xl md:text-5xl font-light text-geosang-deep leading-tight mb-8">
+              <h2 className="text-2xl md:text-4xl lg:text-5xl font-light text-geosang-deep leading-tight mb-8">
                 {lang === 'ko' ? (
                   <>종이 한 장 안에<br />담긴 환경의 무게</>
                 ) : (
@@ -379,7 +379,7 @@ const ESG: FC<ESGProps> = ({ lang }) => {
         <div className="container-custom">
           <div className="text-center mb-16">
             <div className="text-geosang-teal text-sm font-medium uppercase tracking-[0.25em] mb-4">Our Impact</div>
-            <h2 className="text-4xl md:text-5xl font-light text-geosang-deep leading-tight">
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-light text-geosang-deep leading-tight">
               {lang === 'ko' ? (
                 <>숫자로 보는<br />거상자원의 ESG 성과</>
               ) : (
@@ -438,7 +438,7 @@ const ESG: FC<ESGProps> = ({ lang }) => {
               className="lg:w-1/2"
             >
               <div className="text-geosang-teal text-sm font-medium uppercase tracking-[0.2em] mb-6">{t.social.tag}</div>
-              <h2 className="text-4xl md:text-5xl font-light text-geosang-deep leading-tight mb-8">
+              <h2 className="text-2xl md:text-4xl lg:text-5xl font-light text-geosang-deep leading-tight mb-8">
                 {t.social.h2}
               </h2>
               <p className="text-slate-500 font-light leading-relaxed text-lg mb-10">
@@ -471,7 +471,7 @@ const ESG: FC<ESGProps> = ({ lang }) => {
           <div className="flex flex-col lg:flex-row gap-16 items-start">
             <div className="lg:w-1/3 lg:sticky lg:top-32 self-start">
               <div className="text-geosang-teal text-sm font-medium uppercase tracking-[0.2em] mb-6">UN SDGs</div>
-              <h2 className="text-4xl md:text-5xl font-light leading-tight mb-8">
+              <h2 className="text-2xl md:text-4xl lg:text-5xl font-light leading-tight mb-8">
                 {lang === 'ko' ? (
                   <>유엔의 지속가능발전목표에<br /><span className="text-geosang-teal">직접 기여</span>합니다</>
                 ) : (
@@ -516,7 +516,7 @@ const ESG: FC<ESGProps> = ({ lang }) => {
         <div className="container-custom">
           <div className="text-center mb-20">
             <div className="text-geosang-teal text-sm font-medium uppercase tracking-[0.25em] mb-5">ESG Roadmap</div>
-            <h2 className="text-4xl md:text-5xl font-light text-geosang-deep leading-tight">
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-light text-geosang-deep leading-tight">
               {lang === 'ko' ? '연도별 ESG 이행 계획' : 'Annual ESG Implementation Plan'}
             </h2>
           </div>
@@ -528,7 +528,7 @@ const ESG: FC<ESGProps> = ({ lang }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.12 }}
                 viewport={{ once: true }}
-                className={`relative rounded-2xl border p-8 transition-all ${
+                className={`relative rounded-2xl border p-4 sm:p-8 transition-all ${
                   i < 2
                     ? 'bg-geosang-teal/5 border-geosang-teal/20'
                     : 'bg-slate-50 border-slate-100 hover:border-geosang-teal/20'

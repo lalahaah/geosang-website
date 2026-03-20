@@ -51,7 +51,7 @@ const PageHero: FC<PageHeroProps> = ({
       </div>
 
       {/* Content */}
-      <div className="relative z-20 container-custom py-20 text-center flex flex-col items-center">
+      <div className="relative z-20 container-custom pt-24 pb-12 md:pt-40 md:pb-20 text-center flex flex-col items-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -63,7 +63,7 @@ const PageHero: FC<PageHeroProps> = ({
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="text-5xl md:text-7xl font-light text-white leading-[1.1] mb-10 max-w-4xl mx-auto"
+          className="text-3xl md:text-5xl lg:text-7xl font-light text-white leading-[1.1] mb-10 max-w-4xl mx-auto"
         >
           {h1}
           {h1Teal && (
@@ -75,7 +75,7 @@ const PageHero: FC<PageHeroProps> = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="text-lg md:text-xl text-white/60 font-light leading-relaxed max-w-2xl mx-auto mb-12"
+            className="text-base md:text-xl text-white/60 font-light leading-relaxed max-w-2xl mx-auto mb-12"
           >
             {subtitle}
           </motion.p>
@@ -87,7 +87,7 @@ const PageHero: FC<PageHeroProps> = ({
                 <button
                   key={i}
                   onClick={btn.onClick}
-                  className="px-10 py-4 bg-geosang-teal text-white rounded-full font-medium hover:bg-geosang-teal-dark transition-all shadow-lg flex items-center gap-3"
+                  className="w-full sm:w-auto px-10 py-4 bg-geosang-teal text-white rounded-full font-medium hover:bg-geosang-teal-dark transition-all shadow-lg flex items-center gap-3"
                 >
                   {btn.label}
                 </button>
@@ -95,7 +95,7 @@ const PageHero: FC<PageHeroProps> = ({
                 <button
                   key={i}
                   onClick={btn.onClick}
-                  className="px-10 py-4 bg-white/5 text-white border border-white/15 rounded-full font-medium hover:bg-white/10 transition-all"
+                  className="w-full sm:w-auto px-10 py-4 bg-white/5 text-white border border-white/15 rounded-full font-medium hover:bg-white/10 transition-all"
                 >
                   {btn.label}
                 </button>

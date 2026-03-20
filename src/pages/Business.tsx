@@ -83,7 +83,7 @@ const Business: React.FC<BusinessProps> = ({ lang }) => {
           <div className="flex flex-col lg:flex-row gap-24 items-start">
             <div className="lg:w-1/2 lg:sticky lg:top-40">
               <div className="text-geosang-teal text-xs font-bold uppercase tracking-[0.4em] mb-8">{t.valueProp.tag}</div>
-              <h2 className="text-5xl md:text-6xl font-light text-geosang-deep leading-tight mb-10">
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-light text-geosang-deep leading-tight mb-10">
                 {t.valueProp.h2}<br />
                 <span className="text-geosang-teal tracking-tighter">{t.valueProp.h2Teal}</span>
               </h2>
@@ -119,7 +119,7 @@ const Business: React.FC<BusinessProps> = ({ lang }) => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-0 md:divide-x md:divide-slate-200">
             {stats.map((s: any, i: number) => (
               <div key={i} className="flex flex-col items-center px-6">
-                <div className="text-5xl md:text-7xl font-light text-geosang-deep mb-4 tracking-tighter">{s.value}</div>
+                <div className="text-3xl md:text-5xl lg:text-7xl font-light text-geosang-deep mb-4 tracking-tighter">{s.value}</div>
                 <div className="text-[11px] font-bold uppercase tracking-[0.3em] text-slate-400">{s.label}</div>
               </div>
             ))}
@@ -140,9 +140,9 @@ const Business: React.FC<BusinessProps> = ({ lang }) => {
             </h2>
             <p className="text-xl text-slate-500 font-light">{t.partnership.p}</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-10">
             {partners.map((partner: any, i: number) => (
-              <div key={i} className="bg-slate-50 rounded-[2.5rem] p-12 hover:bg-geosang-teal/5 transition-all group border border-transparent hover:border-geosang-teal/10">
+              <div key={i} className="bg-slate-50 rounded-[2.5rem] p-6 sm:p-12 hover:bg-geosang-teal/5 transition-all group border border-transparent hover:border-geosang-teal/10">
                 <div className="h-20 mb-12 overflow-hidden rounded-2xl grayscale group-hover:grayscale-0 transition-all opacity-50 group-hover:opacity-100 shadow-sm">
                   <img src={partner.logo} alt={partner.name} className="w-full h-full object-cover" />
                 </div>

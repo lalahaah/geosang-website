@@ -110,7 +110,7 @@ const Platform: FC<PlatformProps> = ({ lang }) => {
               <span className="w-1.5 h-1.5 rounded-full bg-geosang-teal animate-pulse" />
               {t.hero.badge}
             </div>
-            <h1 className="text-5xl md:text-7xl font-light text-white leading-[1.1] mb-8 max-w-4xl mx-auto">
+            <h1 className="text-3xl md:text-5xl lg:text-7xl font-light text-white leading-[1.1] mb-8 max-w-4xl mx-auto">
               {t.hero.h1}<br />
               <span className="text-geosang-teal italic">{t.hero.h1Teal}</span><br />
               {t.hero.h1Last}
@@ -158,7 +158,7 @@ const Platform: FC<PlatformProps> = ({ lang }) => {
         <div className="container-custom relative z-10">
           <div className="max-w-3xl mb-20">
             <div className="text-geosang-teal text-[10px] font-medium tracking-[0.4em] uppercase mb-6">{t.whyDx.tag}</div>
-            <h2 className="text-4xl md:text-6xl font-light text-white leading-[1.15] mb-8">
+            <h2 className="text-2xl md:text-4xl lg:text-6xl font-light text-white leading-[1.15] mb-8">
               {t.whyDx.h2}
             </h2>
           </div>
@@ -169,7 +169,7 @@ const Platform: FC<PlatformProps> = ({ lang }) => {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-white/5 border border-white/10 rounded-3xl p-10"
+              className="bg-white/5 border border-white/10 rounded-3xl p-4 sm:p-10"
             >
               <div className="text-[10px] tracking-[0.3em] text-red-400 uppercase font-medium mb-8">{t.whyDx.problems[0].title}</div>
               <ul className="space-y-5">
@@ -188,7 +188,7 @@ const Platform: FC<PlatformProps> = ({ lang }) => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="bg-geosang-teal/10 border border-geosang-teal/20 rounded-3xl p-10"
+              className="bg-geosang-teal/10 border border-geosang-teal/20 rounded-3xl p-4 sm:p-10"
             >
               <div className="text-[10px] tracking-[0.3em] text-geosang-teal uppercase font-medium mb-8">{t.whyDx.solutions[0].title}</div>
               <ul className="space-y-5">
@@ -210,7 +210,7 @@ const Platform: FC<PlatformProps> = ({ lang }) => {
           <div className="flex flex-col md:flex-row justify-between items-end gap-10 mb-20">
             <div className="max-w-xl">
               <div className="text-geosang-teal text-[10px] font-medium tracking-[0.4em] uppercase mb-5">{t.valueProp.tag}</div>
-              <h2 className="text-4xl md:text-5xl font-light text-geosang-deep leading-tight">
+              <h2 className="text-2xl md:text-4xl lg:text-5xl font-light text-geosang-deep leading-tight">
                 {t.valueProp.h2}
               </h2>
             </div>
@@ -227,7 +227,7 @@ const Platform: FC<PlatformProps> = ({ lang }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.15 }}
-                className="bg-white rounded-3xl p-10 border border-slate-100 hover:shadow-xl hover:border-geosang-teal/10 transition-all group"
+                className="bg-white rounded-3xl p-4 sm:p-10 border border-slate-100 hover:shadow-xl hover:border-geosang-teal/10 transition-all group"
               >
                 <div className="w-14 h-14 bg-geosang-teal/8 rounded-2xl flex items-center justify-center text-geosang-teal mb-8 group-hover:bg-geosang-teal group-hover:text-white transition-all">
                   {i === 0 && <Database className="w-8 h-8" />}
@@ -248,10 +248,10 @@ const Platform: FC<PlatformProps> = ({ lang }) => {
 
       {/* ════════ Sticky 5 Features (Rubicon 스타일) ════════ */}
       <div ref={containerRef} className="h-[500vh] relative">
-        <div className="sticky top-20 h-[calc(100vh-80px)] w-full flex overflow-hidden">
+        <div className="sticky top-20 h-[calc(100vh-80px)] w-full flex flex-col md:flex-row overflow-hidden">
 
           {/* 좌측: 텍스트 (다크) */}
-          <div className="w-[42%] h-full bg-geosang-deep flex flex-col px-12 xl:px-20 py-12">
+          <div className="w-full md:w-[42%] h-full bg-geosang-deep flex flex-col px-12 xl:px-20 py-12">
             {/* 카운터 + 프로그레스 */}
             <div className="flex items-center gap-4 pb-8">
               <span className="text-[10px] tracking-[0.35em] text-white/30 uppercase font-medium whitespace-nowrap">
@@ -320,7 +320,7 @@ const Platform: FC<PlatformProps> = ({ lang }) => {
           </div>
 
           {/* 우측: 이미지 */}
-          <div className="w-[58%] h-full relative bg-slate-900 overflow-hidden">
+          <div className="w-full md:w-[58%] h-full relative bg-slate-900 overflow-hidden">
             {platformFeatures.map((feature: any, index: number) => (
               <motion.div
                 key={feature.id + index}
@@ -345,7 +345,7 @@ const Platform: FC<PlatformProps> = ({ lang }) => {
         <div className="container-custom">
           <div className="text-center max-w-2xl mx-auto mb-20">
             <div className="text-geosang-teal text-[10px] font-medium tracking-[0.4em] uppercase mb-5">Technology Stack</div>
-            <h2 className="text-4xl md:text-5xl font-light text-geosang-deep leading-tight mb-6">
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-light text-geosang-deep leading-tight mb-6">
               {lang === 'ko' ? '미래 산업을 구성하는' : 'The 6 Core Technologies'}<br />
               {lang === 'ko' ? '6가지 핵심 기술' : 'Shaping the Future Industry'}
             </h2>
@@ -364,7 +364,7 @@ const Platform: FC<PlatformProps> = ({ lang }) => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08 }}
-                className="group relative p-8 rounded-2xl border border-slate-100 hover:border-geosang-teal/20 hover:bg-geosang-teal/3 transition-all"
+                className="group relative p-4 sm:p-8 rounded-2xl border border-slate-100 hover:border-geosang-teal/20 hover:bg-geosang-teal/3 transition-all"
               >
                 <div className="flex items-start gap-5">
                   <div className="w-12 h-12 rounded-xl bg-geosang-teal/8 flex items-center justify-center text-geosang-teal shrink-0 group-hover:bg-geosang-teal group-hover:text-white transition-all">
@@ -395,7 +395,7 @@ const Platform: FC<PlatformProps> = ({ lang }) => {
             {/* 좌측 */}
             <div className="lg:w-1/3 lg:sticky lg:top-32">
               <div className="text-geosang-teal text-[10px] font-medium tracking-[0.4em] uppercase mb-6">Development Roadmap</div>
-              <h2 className="text-4xl md:text-5xl font-light text-white leading-[1.2] mb-8">
+              <h2 className="text-2xl md:text-4xl lg:text-5xl font-light text-white leading-[1.2] mb-8">
                 {lang === 'ko' ? (
                   <>단계적으로<br />완성되는<br /><span className="text-geosang-teal">디지털 루프</span></>
                 ) : (
@@ -422,7 +422,7 @@ const Platform: FC<PlatformProps> = ({ lang }) => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className={`relative rounded-2xl border p-8 transition-all ${
+                  className={`relative rounded-2xl border p-4 sm:p-8 transition-all ${
                     i === 0
                       ? 'bg-geosang-teal/10 border-geosang-teal/30'
                       : 'bg-white/3 border-white/8 hover:bg-white/5'
@@ -471,9 +471,9 @@ const Platform: FC<PlatformProps> = ({ lang }) => {
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="flex flex-col items-center py-12 px-6"
+                className="flex flex-col items-center py-6 px-4 sm:py-12 sm:px-6"
               >
-                <div className="text-4xl md:text-6xl font-light text-geosang-deep mb-2 tracking-tighter">{stat.value}</div>
+                <div className="text-2xl md:text-4xl lg:text-6xl font-light text-geosang-deep mb-2 tracking-tighter">{stat.value}</div>
                 <div className="text-[10px] text-geosang-teal tracking-[0.3em] uppercase mb-1">{stat.sub}</div>
                 <div className="text-xs text-slate-400 font-light">{stat.label}</div>
               </motion.div>
@@ -488,7 +488,7 @@ const Platform: FC<PlatformProps> = ({ lang }) => {
           <p className="text-[10px] font-medium text-slate-300 uppercase tracking-[0.4em] text-center mb-14">
             Integrated with Ecosystem Leaders
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-x-20 gap-y-8">
+          <div className="flex flex-wrap items-center justify-center gap-x-8 sm:gap-x-20 gap-y-4 sm:gap-y-8">
             {[
               { name: 'ALLBARO', desc: lang === 'ko' ? '공공 폐기물 관리 시스템' : 'Public Waste Management' },
               { name: 'AWS CLOUD', desc: lang === 'ko' ? '클라우드 인프라' : 'Cloud Infrastructure' },
@@ -517,7 +517,7 @@ const Platform: FC<PlatformProps> = ({ lang }) => {
       {/* ════════ CTA ════════ */}
       <section className="py-32 bg-white">
         <div className="container-custom">
-          <div className="relative rounded-[2.5rem] overflow-hidden bg-geosang-deep p-14 md:p-24 text-center">
+          <div className="relative rounded-[2.5rem] overflow-hidden bg-geosang-deep p-6 sm:p-14 md:p-24 text-center">
             <div className="absolute inset-0 z-0">
               <img
                 src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2670&auto=format&fit=crop"
@@ -529,7 +529,7 @@ const Platform: FC<PlatformProps> = ({ lang }) => {
 
             <div className="relative z-10 max-w-3xl mx-auto text-white">
               <div className="text-geosang-teal text-[10px] font-medium tracking-[0.4em] uppercase mb-8">{t.cta.tag}</div>
-              <h2 className="text-4xl md:text-5xl font-light mb-8 leading-tight">
+              <h2 className="text-2xl md:text-4xl lg:text-5xl font-light mb-8 leading-tight">
                 {t.cta.h2}<br />
                 <span className="text-geosang-teal italic">{t.cta.h2Teal}</span>
               </h2>
