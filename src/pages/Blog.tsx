@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, ExternalLink } from 'lucide-react';
+import { translations } from '../translations';
 
 const allPosts = [
   {
@@ -68,10 +69,16 @@ const allPosts = [
   },
 ];
 
-const categories = ['전체', '지속가능성', '기술', '비즈니스', 'ESG', '자원순환', '회사소식'];
+// Korean category values used internally for filtering (must match post.category values)
+const koCategories = ['전체', '지속가능성', '기술', '비즈니스', 'ESG', '자원순환', '회사소식'];
+
 const PAGE_SIZE = 6;
 
-const Blog = () => {
+interface BlogProps { lang: 'ko' | 'en' }
+const Blog: React.FC<BlogProps> = ({ lang }) => {
+  const t = (translations[lang] as any).blog;
+  const displayCategories = (t.categories as string[]) || koCategories;
+
   const [selectedCategory, setSelectedCategory] = useState('전체');
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
@@ -101,7 +108,7 @@ const Blog = () => {
             animate={{ opacity: 1, y: 0 }}
             className="text-geosang-teal text-sm font-medium uppercase tracking-[0.25em] mb-6"
           >
-            Insights & Stories
+            {t.hero.tag}
           </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -109,7 +116,7 @@ const Blog = () => {
             transition={{ delay: 0.1 }}
             className="text-5xl md:text-6xl font-light text-white leading-[1.1] mb-6"
           >
-            거상자원 블로그
+            {t.hero.h1}
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}
@@ -117,7 +124,7 @@ const Blog = () => {
             transition={{ delay: 0.2 }}
             className="text-lg text-white/50 font-light max-w-xl"
           >
-            자원순환, 기술, ESG — 업계의 인사이트를 전합니다.
+            {t.hero.p}
           </motion.p>
         </div>
       </section>
@@ -126,17 +133,17 @@ const Blog = () => {
       <div className="sticky top-[72px] z-30 bg-white border-b border-slate-100 shadow-sm">
         <div className="container-custom">
           <div className="flex items-center gap-2 py-4 overflow-x-auto no-scrollbar">
-            {categories.map((cat) => (
+            {koCategories.map((koCat, i) => (
               <button
-                key={cat}
-                onClick={() => handleCategoryChange(cat)}
+                key={koCat}
+                onClick={() => handleCategoryChange(koCat)}
                 className={`shrink-0 px-5 py-2 rounded-full text-sm font-medium transition-all ${
-                  selectedCategory === cat
+                  selectedCategory === koCat
                     ? 'bg-geosang-deep text-white'
                     : 'bg-slate-100 text-slate-500 hover:bg-slate-200'
                 }`}
               >
-                {cat}
+                {displayCategories[i] || koCat}
               </button>
             ))}
             {selectedCategory !== '전체' && (
@@ -144,7 +151,7 @@ const Blog = () => {
                 onClick={() => handleCategoryChange('전체')}
                 className="shrink-0 px-4 py-2 rounded-full text-sm text-geosang-teal border border-geosang-teal/30 hover:bg-geosang-teal/10 transition-all"
               >
-                초기화
+                {t.clearFilter}
               </button>
             )}
           </div>
@@ -156,7 +163,7 @@ const Blog = () => {
         <div className="container-custom">
           {visible.length === 0 ? (
             <div className="text-center py-24 text-slate-400 font-light text-lg">
-              해당 카테고리의 포스트가 없습니다.
+              {t.emptyLabel || '해당 카테고리의 포스트가 없습니다.'}
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -187,7 +194,7 @@ const Blog = () => {
                     {post.excerpt}
                   </p>
                   <div className="inline-flex items-center gap-2 text-sm font-medium border-b-2 border-slate-200 group-hover:border-geosang-teal transition-all pb-1 text-geosang-deep group-hover:text-geosang-teal">
-                    읽어보기 <ExternalLink size={13} />
+                    {t.readMore} <ExternalLink size={13} />
                   </div>
                 </motion.div>
               ))}
@@ -201,7 +208,7 @@ const Blog = () => {
                 onClick={() => setVisibleCount(v => v + PAGE_SIZE)}
                 className="px-10 py-4 border border-geosang-deep text-geosang-deep hover:bg-geosang-deep hover:text-white rounded-full text-base font-medium transition-all flex items-center gap-2 mx-auto group"
               >
-                더 많은 포스트 보기
+                {t.loadMore}
                 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
@@ -222,17 +229,16 @@ const Blog = () => {
             className="max-w-2xl mx-auto"
           >
             <h2 className="text-4xl md:text-5xl font-light text-white mb-10 leading-tight">
-              함께 <span className="text-geosang-teal italic">미래</span>로<br />
-              나아갈 준비가 되셨나요?
+              {t.cta.h2} <span className="text-geosang-teal italic">{t.cta.h2Teal}</span>
             </h2>
             <p className="text-xl text-white/60 font-light mb-12">
-              거상자원의 자원순환 전문 팀이 귀사의 문제를 해결합니다.
+              {t.cta.p}
             </p>
             <button
               onClick={() => window.location.hash = 'get-started'}
               className="px-12 py-5 bg-geosang-teal hover:bg-[#008f84] text-white font-bold rounded-full text-xl transition-all shadow-2xl shadow-geosang-teal/20 active:scale-95 flex items-center gap-3 mx-auto"
             >
-              문의하기 <ArrowRight size={24} />
+              {t.cta.btn} <ArrowRight size={24} />
             </button>
           </motion.div>
         </div>

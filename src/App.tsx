@@ -36,16 +36,15 @@ function App() {
   return (
     <Layout lang={lang} setLang={setLang}>
       {currentPage === 'home' && <Home lang={lang} />}
-      {currentPage === 'about' && <About />}
-      {currentPage === 'business' && <Business />}
-      {currentPage === 'platform' && <Platform />}
-      {currentPage === 'contact' && <Contact />}
-      {currentPage === 'get-started' && <GetStarted />}
-      {/* #process → Process 페이지 */}
-      {currentPage === 'process' && <Process />}
-      {currentPage === 'esg' && <ESG />}
-      {currentPage === 'blog' && <Blog />}
-      {currentPage === 'careers' && <Careers />}
+      {currentPage === 'about' && <About lang={lang} />}
+      {currentPage === 'business' && <Business lang={lang} />}
+      {currentPage === 'platform' && <Platform lang={lang} />}
+      {currentPage === 'contact' && <Contact lang={lang} />}
+      {currentPage === 'get-started' && <GetStarted lang={lang} />}
+      {currentPage === 'process' && <Process lang={lang} />}
+      {currentPage === 'esg' && <ESG lang={lang} />}
+      {currentPage === 'blog' && <Blog lang={lang} />}
+      {currentPage === 'careers' && <Careers lang={lang} />}
     </Layout>
   );
 }
