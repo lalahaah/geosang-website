@@ -50,7 +50,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
                 }`} 
               />
             </div>
-            <div className={`text-xl font-bold tracking-tight transition-colors flex items-center gap-2 ${
+            <div className={`hidden sm:flex text-xl font-bold tracking-tight transition-colors items-center gap-2 ${
               isScrolled ? 'text-geosang-teal' : 'text-white'
             }`}>
               <span>GEOSANG</span>
@@ -106,9 +106,9 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
             }`}>
               {t.login}
             </button>
-            <button 
+            <button
               onClick={() => window.location.hash = 'get-started'}
-              className="bg-geosang-teal hover:bg-geosang-deep text-white text-[12px] tracking-widest font-bold px-7 py-3 rounded-full transition-all hover:scale-[1.03] active:scale-[0.98] shadow-lg shadow-geosang-teal/20"
+              className="hidden lg:block bg-geosang-teal hover:bg-geosang-deep text-white text-[12px] tracking-widest font-bold px-7 py-3 rounded-full transition-all hover:scale-[1.03] active:scale-[0.98] shadow-lg shadow-geosang-teal/20"
             >
               {t.contact}
             </button>
