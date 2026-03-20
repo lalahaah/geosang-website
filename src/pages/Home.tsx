@@ -81,11 +81,11 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
             alt="Modern Smart Yard"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black/10 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/30 to-black/55 z-10" />
         </div>
 
-        {/* 텍스트 블록: 이미지 하단 밝은 영역을 피해 위쪽으로 배치 */}
-        <div className="relative z-20 container-custom py-32 text-center flex flex-col items-center -mt-40">
+        {/* 텍스트 블록: 이미지 정중앙 배치 */}
+        <div className="relative z-20 container-custom py-20 text-center flex flex-col items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -490,8 +490,11 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
                 {t.blog.title}
               </h2>
             </div>
-            {/* '모든 리소스 보기' → '모든 포스트 보기' 버튼으로 변경 */}
-            <button className="px-8 py-3 bg-geosang-deep hover:bg-geosang-teal text-white font-bold rounded-full text-sm transition-all flex items-center gap-2 group">
+            {/* '모든 포스트 보기' 버튼 → 블로그 페이지로 이동 */}
+            <button
+              onClick={() => window.location.hash = 'blog'}
+              className="px-8 py-3 bg-geosang-deep hover:bg-geosang-teal text-white font-bold rounded-full text-sm transition-all flex items-center gap-2 group"
+            >
               {t.blog.viewAll} <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
@@ -522,12 +525,8 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
         </div>
       </section>
 
-      {/* CTA Section — '함께 미래로', 배경을 로고 이미지로 교체, 뉴스레터 폼 삭제 */}
+      {/* CTA Section — '함께 미래로' */}
       <section className="section-padding bg-[#093944] relative overflow-hidden" id="take-next-step">
-        {/* 배경: Recycle 아이콘 대신 로고 이미지로 교체 */}
-        <div className="absolute inset-0 z-0 opacity-[0.04] flex items-center justify-center pointer-events-none">
-          <img src={heroBg} alt="" className="w-full h-full object-cover" />
-        </div>
         <div className="absolute inset-0 z-[1] flex items-center justify-center pointer-events-none overflow-hidden">
           <img
             src={logoImg}
@@ -543,7 +542,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
             viewport={{ once: true }}
             className="max-w-3xl mx-auto"
           >
-            <h2 className="text-4xl md:text-6xl font-light text-white mb-8 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-light text-white mb-10 leading-tight">
               {lang === 'ko' ? (
                 <>
                   함께 <span className="text-geosang-teal italic">미래</span>로 <br />

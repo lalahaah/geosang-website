@@ -213,10 +213,10 @@ const Business = () => {
   return (
     <div className="flex flex-col w-full bg-white font-display">
       {/* ════════ Hero ════════ */}
-      <section className="relative min-h-[95vh] flex items-center justify-center overflow-hidden bg-geosang-deep text-center">
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-geosang-deep text-center">
         <div className="absolute inset-0 z-0">
           <img src={heroBg} alt="" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-geosang-deep/90 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/30 to-black/55 z-10" />
         </div>
         <div className="relative z-20 container-custom px-4 pt-20">
           
@@ -338,21 +338,22 @@ const Business = () => {
         </div>
         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-geosang-teal/10 to-transparent pointer-events-none" />
         <div className="container-custom relative z-10">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            className="text-5xl md:text-7xl text-white mb-10 leading-tight tracking-tighter"
+            className="text-4xl md:text-5xl font-light text-white mb-10 leading-tight"
           >
-            지속 가능한 비즈니스,<br /><span className="text-geosang-teal">거상자원이 실천합니다.</span>
+            지속 가능한 비즈니스,<br />
+            <span className="text-geosang-teal italic">거상자원이 실천합니다.</span>
           </motion.h2>
-          <p className="text-slate-300 text-2xl font-light mb-20 max-w-3xl mx-auto leading-relaxed">
-            귀사의 폐기물 관리를 데이터와 전문성 기반의 <br className="hidden md:block" /> 핵심 비즈니스 자산으로 전환해 보세요.
+          <p className="text-xl text-white/60 font-light mb-12 max-w-xl mx-auto">
+            귀사의 폐기물 관리를 데이터와 전문성 기반의 핵심 비즈니스 자산으로 전환해 보세요.
           </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
-            <button onClick={() => window.location.hash = 'get-started'} className="bg-geosang-teal text-white hover:bg-white hover:text-geosang-teal px-16 py-8 rounded-full font-medium text-xl transition-all shadow-[0_20px_50px_rgba(0,162,142,0.3)] flex items-center gap-4 group">
-              솔루션 상담 신청 <ArrowRight className="group-hover:translate-x-2 transition-transform" />
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+            <button onClick={() => window.location.hash = 'get-started'} className="px-12 py-5 bg-geosang-teal hover:bg-[#008f84] text-white font-bold rounded-full text-xl transition-all shadow-2xl shadow-geosang-teal/20 active:scale-95 flex items-center gap-3">
+              솔루션 상담 신청 <ArrowRight size={24} />
             </button>
-            <button className="border border-white/30 text-white hover:bg-white/10 px-16 py-8 rounded-full font-medium text-xl transition-all">
+            <button className="px-12 py-5 border border-white/30 text-white hover:bg-white/10 rounded-full font-bold text-xl transition-all">
               소개서 다운로드
             </button>
           </div>

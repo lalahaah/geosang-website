@@ -170,15 +170,15 @@ const Platform = () => {
     <div className="bg-white font-display">
 
       {/* ════════ Hero ════════ */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-geosang-deep">
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-geosang-deep">
         {/* 배경 */}
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2534&auto=format&fit=crop"
             alt=""
-            className="w-full h-full object-cover opacity-20"
+            className="w-full h-full object-cover opacity-45"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-geosang-deep/80 via-geosang-deep/60 to-geosang-deep" />
+          <div className="absolute inset-0 bg-gradient-to-b from-geosang-deep/50 via-geosang-deep/30 to-geosang-deep/70" />
           <div
             className="absolute inset-0 opacity-10"
             style={{ backgroundImage: 'radial-gradient(#ffffff 1px, transparent 1px)', backgroundSize: '40px 40px' }}
@@ -656,23 +656,22 @@ const Platform = () => {
 
             <div className="relative z-10 max-w-3xl mx-auto text-white">
               <div className="text-geosang-teal text-[10px] font-medium tracking-[0.4em] uppercase mb-8">Get Started</div>
-              <h2 className="text-4xl md:text-6xl font-light mb-8 leading-tight">
+              <h2 className="text-4xl md:text-5xl font-light mb-8 leading-tight">
                 준비되셨나요?<br />
-                거상자원의 디지털 루프를<br />
-                시작하세요.
+                <span className="text-geosang-teal italic">거상자원의 디지털 루프를 시작하세요.</span>
               </h2>
-              <p className="text-white/40 font-light text-lg mb-14 leading-relaxed max-w-xl mx-auto">
+              <p className="text-xl text-white/60 font-light mb-12 max-w-xl mx-auto leading-relaxed">
                 지금 플랫폼 도입 상담을 신청하고,<br />
                 귀사의 자원 순환 프로세스를 데이터 중심으로 혁신하십시오.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
                 <button
                   onClick={() => window.location.hash = 'get-started'}
-                  className="px-12 py-5 bg-geosang-teal text-white rounded-full font-medium hover:bg-white hover:text-geosang-teal transition-all shadow-lg flex items-center gap-3 group"
+                  className="px-12 py-5 bg-geosang-teal hover:bg-[#008f84] text-white font-bold rounded-full text-xl transition-all shadow-2xl shadow-geosang-teal/20 active:scale-95 flex items-center gap-3"
                 >
-                  도입 신청하기 <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                  도입 신청하기 <ArrowRight size={24} />
                 </button>
-                <button className="px-12 py-5 bg-white/5 text-white border border-white/15 rounded-full font-medium hover:bg-white/10 transition-all">
+                <button className="px-12 py-5 bg-white/5 text-white border border-white/20 rounded-full font-bold text-xl hover:bg-white/10 transition-all">
                   회사 소개서 다운로드
                 </button>
               </div>

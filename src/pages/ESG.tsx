@@ -119,9 +119,9 @@ const ESG = () => {
           <img
             src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2560&auto=format&fit=crop"
             alt=""
-            className="w-full h-full object-cover opacity-30"
+            className="w-full h-full object-cover opacity-55"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#093944]/70 via-[#093944]/50 to-[#093944]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#093944]/40 via-[#093944]/25 to-[#093944]/65" />
         </div>
 
         <div className="relative z-10 container-custom text-center pt-20">
@@ -571,22 +571,22 @@ const ESG = () => {
             className="max-w-3xl mx-auto"
           >
             <div className="text-geosang-teal text-sm font-medium uppercase tracking-[0.25em] mb-8">Together for Tomorrow</div>
-            <h2 className="text-4xl md:text-6xl font-light text-white mb-8 leading-tight">
+            <h2 className="text-4xl md:text-5xl font-light text-white mb-10 leading-tight">
               귀사의 ESG 목표,<br />
               <span className="text-geosang-teal italic">거상자원이 데이터로 증명합니다.</span>
             </h2>
-            <p className="text-xl text-white/50 font-light mb-14 max-w-xl mx-auto leading-relaxed">
+            <p className="text-xl text-white/60 font-light mb-12 max-w-xl mx-auto leading-relaxed">
               탄소 절감량, 자원 회수율, 순환 기여도 —<br />
               우리가 함께 만들어 낸 지속 가능한 숫자를 ESG 보고서에 담으세요.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
               <button
                 onClick={() => window.location.hash = 'get-started'}
-                className="px-12 py-5 bg-geosang-teal hover:bg-white hover:text-geosang-teal text-white rounded-full font-medium text-lg transition-all shadow-2xl shadow-geosang-teal/20 flex items-center gap-3 group"
+                className="px-12 py-5 bg-geosang-teal hover:bg-[#008f84] text-white font-bold rounded-full text-xl transition-all shadow-2xl shadow-geosang-teal/20 active:scale-95 flex items-center gap-3 mx-auto sm:mx-0"
               >
-                ESG 파트너십 시작하기 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                ESG 파트너십 시작하기 <ArrowRight size={24} />
               </button>
-              <button className="px-12 py-5 border border-white/20 text-white rounded-full font-medium text-lg hover:bg-white/10 transition-all">
+              <button className="px-12 py-5 border border-white/20 text-white rounded-full font-bold text-xl hover:bg-white/10 transition-all">
                 ESG 보고서 다운로드
               </button>
             </div>

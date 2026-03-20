@@ -9,9 +9,8 @@ import {
   Target,
   Users,
 } from 'lucide-react';
-// About 히어로 이미지 (사용자가 전달한 트럭/수거차량 이미지용 - 실제 파일 교체 시 aboutHero import 사용)
-// 사용자가 직접 저장한 트럭(수거 차량) 히어로 이미지
-import aboutHero from '../assets/about-hero.jpg';
+// About 히어로 이미지
+const aboutHero = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2560&auto=format&fit=crop';
 // CTA 배경 로고 import
 import logoImg from '../assets/logo.svg';
 
@@ -21,16 +20,14 @@ const About = () => {
     <div className="flex flex-col w-full bg-white font-display overflow-x-hidden">
 
       {/* ─── Hero Section ─── 랜딩페이지와 동일하게 헤더와 겹침, 이미지 원본 사용 */}
-      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden bg-slate-900">
-        {/* 배경 이미지: 투명도/흑백 처리 없이 원본 그대로 */}
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-slate-900">
         <div className="absolute inset-0 z-0">
           <img
             src={aboutHero}
-            alt="거상자원 수거 차량"
+            alt="거상자원"
             className="w-full h-full object-cover"
           />
-          {/* 이미지가 밝으므로 텍스트 가독성 확보를 위해 오버레이 적용 */}
-          <div className="absolute inset-0 bg-black/45 z-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/30 to-black/55 z-10" />
         </div>
 
         {/* 텍스트 블록: 위쪽으로 배치 (헤더 높이만큼 상쇄) */}
