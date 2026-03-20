@@ -18,10 +18,10 @@ export const translations = {
       esgReporting: 'ESG 리포팅',
       digitalPlatform: '디지털 플랫폼',
       company: '회사소개',
-      aboutUs: '회사 개요',
+      aboutUs: '회사개요',
       // 리더십 항목은 Footer.tsx에서 삭제 처리
       contact: '문의하기',
-      careers: '채용 정보',
+      careers: '지원하기',
       connect: '연락하기',
       getInTouch: '지금 문의하세요',
       newsletter: '뉴스레터 구독',

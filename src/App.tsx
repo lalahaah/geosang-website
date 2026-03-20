@@ -9,6 +9,7 @@ import GetStarted from './pages/GetStarted.tsx';
 import Process from './pages/Process';
 import ESG from './pages/ESG';
 import Blog from './pages/Blog';
+import Careers from './pages/Careers';
 
 function App() {
   const [currentPage, setCurrentPage] = React.useState('home');
@@ -18,7 +19,7 @@ function App() {
   React.useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace('#', '');
-      if (['home', 'about', 'solutions', 'infrastructure', 'platform', 'contact', 'get-started', 'service', 'process', 'esg', 'blog'].includes(hash)) {
+      if (['home', 'about', 'solutions', 'infrastructure', 'platform', 'contact', 'get-started', 'service', 'process', 'esg', 'blog', 'careers'].includes(hash)) {
         // 서비스(#service) → business, 프로세스(#process) → process
         if (hash === 'solutions' || hash === 'infrastructure' || hash === 'service') setCurrentPage('business');
         else setCurrentPage(hash);
@@ -44,6 +45,7 @@ function App() {
       {currentPage === 'process' && <Process />}
       {currentPage === 'esg' && <ESG />}
       {currentPage === 'blog' && <Blog />}
+      {currentPage === 'careers' && <Careers />}
     </Layout>
   );
 }

@@ -63,7 +63,7 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
               {/* 리더십 항목 삭제 */}
               <li><a href="#about" className="hover:text-white transition-colors">{t.aboutUs}</a></li>
               <li><a href="#" className="hover:text-white transition-colors">{t.contact}</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">{t.careers}</a></li>
+              <li><a href="#careers" className="hover:text-white transition-colors">{t.careers}</a></li>
             </ul>
           </div>
 
