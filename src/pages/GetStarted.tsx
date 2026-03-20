@@ -14,7 +14,7 @@ const GetStarted = () => {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-white pt-32 pb-20 flex items-center justify-center">
+      <div className="min-h-screen bg-white font-display pt-32 pb-20 flex items-center justify-center">
         <div className="container-custom max-w-2xl text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -42,7 +42,7 @@ const GetStarted = () => {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white font-display overflow-x-hidden">
       {/* Hero Section */}
       <section className="pt-40 pb-20 bg-slate-50">
         <div className="container-custom max-w-4xl text-center">

@@ -92,75 +92,89 @@ const StickySteps = () => {
     offset: ['start start', 'end end'],
   });
 
-  // 스크롤 변경 시 현재 인덱스 업데이트 (3단계 기준)
   useMotionValueEvent(scrollYProgress, 'change', (latest) => {
-    // 0~1 사이의 값을 3등분하여 인덱스 결정
     const nextIndex = Math.min(Math.floor(latest * 3), 2);
-    if (nextIndex !== currentIndex) {
-      setCurrentIndex(nextIndex);
-    }
+    if (nextIndex !== currentIndex) setCurrentIndex(nextIndex);
   });
 
   return (
-    <div ref={containerRef} className="relative h-[600vh] bg-white">
-      {/* 
-          Sticky Container: 
-          뷰포트에 고정되는 부분. 
-          Navbar 높이(h-20 = 80px)를 고려하여 top-20 설정.
-      */}
-      <div className="sticky top-20 h-[calc(100vh-80px)] w-full flex flex-col lg:flex-row overflow-hidden">
-        
-        {/* 좌측: 콘텐츠 영역 */}
-        <div className="w-full lg:w-1/2 h-1/2 lg:h-full flex flex-col justify-center px-8 lg:px-24 bg-white z-20 relative">
-          <div className="relative w-full h-[450px]">
+    <div ref={containerRef} className="relative h-[300vh]">
+      <div className="sticky top-20 h-[calc(100vh-80px)] w-full flex overflow-hidden">
+
+        {/* 좌측: 텍스트 */}
+        <div className="w-[42%] h-full bg-white flex flex-col px-12 xl:px-20 py-12 relative">
+          {/* 카운터 + 프로그레스 */}
+          <div className="flex items-center gap-4 mb-auto pb-8">
+            <span className="text-[10px] tracking-[0.35em] text-slate-400 uppercase font-medium whitespace-nowrap">
+              {String(currentIndex + 1).padStart(2, '0')} / {String(steps.length).padStart(2, '0')}
+            </span>
+            <div className="flex gap-1 flex-1">
+              {steps.map((_, i) => (
+                <div
+                  key={i}
+                  className={`h-px flex-1 transition-all duration-700 ${i <= currentIndex ? 'bg-geosang-teal' : 'bg-slate-200'}`}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* 콘텐츠 */}
+          <div className="flex-1 relative">
             {steps.map((step, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ 
+                animate={{
                   opacity: currentIndex === index ? 1 : 0,
-                  y: currentIndex === index ? 0 : 40,
+                  y: currentIndex === index ? 0 : 20,
                   pointerEvents: currentIndex === index ? 'auto' : 'none',
-                  zIndex: currentIndex === index ? 10 : 0
                 }}
-                transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
+                transition={{ duration: 0.55, ease: [0.23, 1, 0.32, 1] }}
                 className="absolute inset-0 flex flex-col justify-center"
               >
-                <div className="w-16 h-16 rounded-3xl bg-geosang-teal/10 border border-geosang-teal/20 flex items-center justify-center text-geosang-teal mb-10 group-hover:bg-geosang-teal group-hover:text-white transition-all duration-500">
-                  {step.icon}
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-9 h-9 rounded-xl bg-geosang-teal/10 flex items-center justify-center text-geosang-teal">
+                    {step.icon}
+                  </div>
+                  <span className="text-geosang-teal text-[10px] font-medium tracking-[0.35em] uppercase">{step.step}</span>
                 </div>
-                <div className="text-geosang-teal text-xs font-black uppercase tracking-[0.4em] mb-6">{step.step}</div>
-                <h2 className="text-5xl md:text-7xl font-light text-geosang-deep leading-[1.1] mb-6">
-                  {step.title}
-                </h2>
-                <p className="text-xl text-geosang-teal font-bold mb-8">{step.copy}</p>
-                <p className="text-lg text-slate-500 font-light leading-relaxed mb-10 max-w-md">{step.desc}</p>
-                <ul className="space-y-5">
+                <h2 className="text-4xl xl:text-5xl font-light text-geosang-deep leading-[1.15] mb-4">{step.title}</h2>
+                <p className="text-sm text-geosang-teal font-light tracking-wide mb-5">{step.copy}</p>
+                <div className="w-8 h-px bg-slate-200 mb-5" />
+                <p className="text-sm text-slate-400 font-light leading-relaxed mb-8 max-w-sm">{step.desc}</p>
+                <ul className="space-y-3">
                   {step.details.map((d, j) => (
-                    <li key={j} className="flex items-start gap-4 group/item">
-                      <div className="w-6 h-6 rounded-full bg-geosang-teal/10 flex items-center justify-center shrink-0 mt-0.5 group-hover/item:bg-geosang-teal transition-colors">
-                        <CheckCircle2 size={14} className="text-geosang-teal group-hover/item:text-white transition-colors" strokeWidth={2.5} />
-                      </div>
-                      <span className="text-slate-600 font-medium tracking-tight">{d}</span>
+                    <li key={j} className="flex items-start gap-3">
+                      <CheckCircle2 size={13} className="text-geosang-teal mt-0.5 shrink-0" strokeWidth={2} />
+                      <span className="text-slate-500 font-light text-sm leading-relaxed">{d}</span>
                     </li>
                   ))}
                 </ul>
               </motion.div>
             ))}
           </div>
+
+          {/* 하단 스텝 목록 */}
+          <div className="mt-auto pt-8 border-t border-slate-100 space-y-1">
+            {steps.map((step, i) => (
+              <div
+                key={i}
+                className={`text-xs tracking-wide transition-all duration-300 ${
+                  i === currentIndex ? 'text-geosang-teal font-medium' : 'text-slate-300 font-light'
+                }`}
+              >
+                {step.title}
+              </div>
+            ))}
+          </div>
         </div>
 
-        {/* 우측: 이미지 영역 */}
-        <div className="w-full lg:w-1/2 h-1/2 lg:h-full relative bg-slate-100 overflow-hidden">
+        {/* 우측: 이미지 */}
+        <div className="w-[58%] h-full relative bg-slate-100 overflow-hidden">
           {steps.map((step, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 1.1 }}
-              animate={{ 
-                opacity: currentIndex === index ? 1 : 0,
-                scale: currentIndex === index ? 1 : 1.1,
-              }}
-              transition={{ duration: 0.9, ease: [0.4, 0, 0.2, 1] }}
+              animate={{ opacity: currentIndex === index ? 1 : 0 }}
+              transition={{ duration: 0.75, ease: [0.4, 0, 0.2, 1] }}
               className="absolute inset-0"
             >
               <img
@@ -168,21 +182,9 @@ const StickySteps = () => {
                 alt={step.imageAlt}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-black/5" />
+              <div className="absolute inset-0 bg-black/15" />
             </motion.div>
           ))}
-          
-          {/* 인디케이터 */}
-          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex gap-4 z-30">
-            {steps.map((_, index) => (
-              <div 
-                key={index}
-                className={`h-1 rounded-full transition-all duration-700 ${
-                  currentIndex === index ? 'w-16 bg-geosang-teal' : 'w-4 bg-white/30'
-                }`}
-              />
-            ))}
-          </div>
         </div>
       </div>
     </div>
@@ -191,7 +193,7 @@ const StickySteps = () => {
 
 const Process = () => {
   return (
-    <div className="flex flex-col w-full bg-white font-display pt-20">
+    <div className="flex flex-col w-full bg-white font-display">
       {/* ════════ Hero ════════ */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-geosang-deep text-center">
         <div className="absolute inset-0 z-0">
@@ -199,27 +201,27 @@ const Process = () => {
           <div className="absolute inset-0 bg-black/60 z-10" />
         </div>
         <div className="relative z-20 container-custom px-4 pt-20">
-          <motion.div 
-            initial={{ opacity: 0, y: 10 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            className="text-geosang-teal text-sm font-bold uppercase tracking-[0.4em] mb-8"
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-geosang-teal text-sm font-bold uppercase tracking-[0.2em] mb-8"
           >
             GEOSANG CONNECT™
           </motion.div>
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ delay: 0.1 }} 
-            className="text-5xl md:text-8xl font-black text-white leading-[1.1] mb-12"
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-5xl md:text-7xl font-light text-white leading-[1.1] mb-10 max-w-4xl mx-auto"
           >
             Digitalizing the<br />
             <span className="text-geosang-teal">Circular Economy</span>
           </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 15 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ delay: 0.2 }} 
-            className="text-xl md:text-2xl text-slate-300 font-light leading-relaxed max-w-3xl mx-auto mb-16"
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-lg md:text-xl text-white/60 font-light leading-relaxed max-w-2xl mx-auto mb-16"
           >
             거상자원은 40년의 정직함을 데이터에 담아,<br />
             기업의 폐기물 관리를 자산의 가치로 전환합니다.
@@ -285,7 +287,7 @@ const Process = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-0 md:divide-x md:divide-slate-200">
             {stats.map((s, i) => (
               <div key={i} className="flex flex-col items-center px-6">
-                <div className="text-4xl md:text-6xl font-black text-geosang-deep mb-4 tracking-tighter">{s.value}</div>
+                <div className="text-4xl md:text-6xl font-light text-geosang-deep mb-4 tracking-tighter">{s.value}</div>
                 <div className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">{s.label}</div>
               </div>
             ))}
@@ -311,7 +313,7 @@ const Process = () => {
                 <div className="h-16 mb-10 overflow-hidden rounded-lg grayscale group-hover:grayscale-0 transition-all opacity-60 group-hover:opacity-100">
                   <img src={partner.logo} alt={partner.name} className="w-full h-full object-cover" />
                 </div>
-                <h3 className="text-2xl font-bold text-geosang-deep mb-4">{partner.name}</h3>
+                <h3 className="text-2xl font-light text-geosang-deep mb-4">{partner.name}</h3>
                 <p className="text-slate-500 font-light mb-8">{partner.desc}</p>
                 <div className="inline-flex items-center gap-2 text-geosang-teal font-bold text-sm tracking-wider uppercase border-b border-geosang-teal pb-1">
                   Case Study <ArrowRight size={14} />
@@ -379,10 +381,10 @@ const Process = () => {
           <h2 className="text-5xl md:text-7xl font-bold text-geosang-deep mb-12 leading-tight">새로운 순환경제의 시작,<br /><span className="text-geosang-teal">거상자원이 함께합니다.</span></h2>
           <p className="text-slate-500 text-xl font-light mb-16 max-w-2xl mx-auto">전국적인 네트워크와 디지털 시스템으로 비즈니스의 자원순환 가치를 높이세요.</p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <button onClick={() => window.location.hash = 'get-started'} className="bg-geosang-teal text-white hover:bg-geosang-deep px-16 py-7 rounded-full font-bold text-xl transition-all shadow-2xl flex items-center gap-4">
+            <button onClick={() => window.location.hash = 'get-started'} className="bg-geosang-teal text-white hover:bg-geosang-deep px-16 py-7 rounded-full font-medium text-xl transition-all shadow-2xl flex items-center gap-4">
               파트너십 문의하기 <ArrowRight />
             </button>
-            <button className="text-geosang-deep font-bold text-xl border-b-2 border-geosang-deep pb-1 hover:text-geosang-teal hover:border-geosang-teal transition-all">
+            <button className="text-geosang-deep font-medium text-xl border-b-2 border-geosang-deep pb-1 hover:text-geosang-teal hover:border-geosang-teal transition-all">
               플랫폼 데모 보기
             </button>
           </div>

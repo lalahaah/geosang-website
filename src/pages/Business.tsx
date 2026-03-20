@@ -16,8 +16,8 @@ import {
 } from 'lucide-react';
 // CTA·헤더 배경용 로고 import
 import logoImg from '../assets/logo.svg';
-// 히어로 배경 이미지
-import heroBg from '../assets/herosection-bg.avif';
+// 히어로 배경 이미지 (산업 야경 - Unsplash)
+const heroBg = 'https://images.unsplash.com/photo-1565008447742-97f6f38c985c?q=80&w=2670&auto=format&fit=crop';
 
 /* ─────────────────────────────────────────────
    데이터 정의
@@ -89,13 +89,13 @@ const services = [
       '순환 자원 통합 거래 및 매칭 시스템',
       '디지털 데이터 기반의 투명한 순환경제 구현',
     ],
-    image: 'https://images.unsplash.com/photo-1551288049-bbda38a061a4?q=80&w=2670&auto=format&fit=crop',
-    imageAlt: '자원순환 IT 플랫폼 대시보드',
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?q=80&w=2534&auto=format&fit=crop',
+    imageAlt: '디지털 자원순환 플랫폼 서버',
   },
 ];
 
 /* ─────────────────────────────────────────────
-   컴포넌트: Sticky Service Section
+   컴포넌트: Sticky Service Section (Rubicon style)
  ───────────────────────────────────────────── */
 const StickyServices = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -107,73 +107,89 @@ const StickyServices = () => {
   });
 
   useMotionValueEvent(scrollYProgress, 'change', (latest) => {
-    // 4개 단계가 있으므로 인덱스 계산을 4로 조정
     const numSteps = services.length;
     const nextIndex = Math.min(Math.floor(latest * numSteps), numSteps - 1);
-    if (nextIndex !== currentIndex) {
-      setCurrentIndex(nextIndex);
-    }
+    if (nextIndex !== currentIndex) setCurrentIndex(nextIndex);
   });
 
   return (
-    <div ref={containerRef} className="relative h-[800vh] bg-white">
-      <div className="sticky top-20 h-[calc(100vh-80px)] w-full flex flex-col lg:flex-row overflow-hidden border-t border-slate-50">
-        
-        {/* 좌측: 서비스 상세 */}
-        <div className="w-full lg:w-1/2 h-1/2 lg:h-full flex flex-col justify-center px-8 lg:px-24 bg-white z-20 relative">
-          <div className="relative w-full h-[450px]">
+    <div ref={containerRef} className="relative h-[400vh]">
+      <div className="sticky top-20 h-[calc(100vh-80px)] w-full flex overflow-hidden">
+
+        {/* 좌측: 텍스트 */}
+        <div className="w-[42%] h-full bg-white flex flex-col px-12 xl:px-20 py-12 relative">
+          {/* 카운터 + 프로그레스 */}
+          <div className="flex items-center gap-4 mb-auto pb-8">
+            <span className="text-[10px] tracking-[0.35em] text-slate-400 uppercase font-medium whitespace-nowrap">
+              {String(currentIndex + 1).padStart(2, '0')} / {String(services.length).padStart(2, '0')}
+            </span>
+            <div className="flex gap-1 flex-1">
+              {services.map((_, i) => (
+                <div
+                  key={i}
+                  className={`h-px flex-1 transition-all duration-700 ${i <= currentIndex ? 'bg-geosang-teal' : 'bg-slate-200'}`}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* 콘텐츠 */}
+          <div className="flex-1 relative">
             {services.map((service, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ 
+                animate={{
                   opacity: currentIndex === index ? 1 : 0,
-                  y: currentIndex === index ? 0 : 40,
+                  y: currentIndex === index ? 0 : 20,
                   pointerEvents: currentIndex === index ? 'auto' : 'none',
-                  zIndex: currentIndex === index ? 10 : 0
                 }}
-                transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
+                transition={{ duration: 0.55, ease: [0.23, 1, 0.32, 1] }}
                 className="absolute inset-0 flex flex-col justify-center"
               >
-                <div className="w-16 h-16 rounded-3xl bg-geosang-teal/10 border border-geosang-teal/20 flex items-center justify-center text-geosang-teal mb-10 group-hover:bg-geosang-teal group-hover:text-white transition-all duration-500">
-                  {service.icon}
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-9 h-9 rounded-xl bg-geosang-teal/10 flex items-center justify-center text-geosang-teal">
+                    {service.icon}
+                  </div>
+                  <span className="text-geosang-teal text-[10px] font-medium tracking-[0.35em] uppercase">{service.step}</span>
                 </div>
-                <div className="text-geosang-teal text-xs font-black uppercase tracking-[0.4em] mb-6">{service.step}</div>
-                <h2 className="text-5xl md:text-7xl font-light text-geosang-deep leading-[1.1] mb-6">
-                  {service.title.split(' ').map((word, i) => (
-                    <span key={i} className={i === 0 ? 'font-bold' : ''}>
-                      {word}{' '}
-                    </span>
-                  ))}
-                </h2>
-                <p className="text-xl text-geosang-teal font-bold mb-8">{service.copy}</p>
-                <p className="text-lg text-slate-500 font-light leading-relaxed mb-10 max-w-md">{service.desc}</p>
-                <ul className="space-y-5">
+                <h2 className="text-4xl xl:text-5xl font-light text-geosang-deep leading-[1.15] mb-4">{service.title}</h2>
+                <p className="text-sm text-geosang-teal font-light tracking-wide mb-5">{service.copy}</p>
+                <div className="w-8 h-px bg-slate-200 mb-5" />
+                <p className="text-sm text-slate-400 font-light leading-relaxed mb-8 max-w-sm">{service.desc}</p>
+                <ul className="space-y-3">
                   {service.details.map((d, j) => (
-                    <li key={j} className="flex items-start gap-4 group/item">
-                      <div className="w-6 h-6 rounded-full bg-geosang-teal/10 flex items-center justify-center shrink-0 mt-0.5 group-hover/item:bg-geosang-teal transition-colors">
-                        <CheckCircle2 size={14} className="text-geosang-teal group-hover/item:text-white transition-colors" strokeWidth={2.5} />
-                      </div>
-                      <span className="text-slate-600 font-medium tracking-tight whitespace-nowrap">{d}</span>
+                    <li key={j} className="flex items-start gap-3">
+                      <CheckCircle2 size={13} className="text-geosang-teal mt-0.5 shrink-0" strokeWidth={2} />
+                      <span className="text-slate-500 font-light text-sm leading-relaxed">{d}</span>
                     </li>
                   ))}
                 </ul>
               </motion.div>
             ))}
           </div>
+
+          {/* 하단 서비스명 목록 */}
+          <div className="mt-auto pt-8 border-t border-slate-100 space-y-1">
+            {services.map((service, i) => (
+              <div
+                key={i}
+                className={`text-xs tracking-wide transition-all duration-300 ${
+                  i === currentIndex ? 'text-geosang-teal font-medium' : 'text-slate-300 font-light'
+                }`}
+              >
+                {service.title}
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* 우측: 이미지 */}
-        <div className="w-full lg:w-1/2 h-1/2 lg:h-full relative bg-slate-100 overflow-hidden lg:rounded-l-[4rem]">
+        <div className="w-[58%] h-full relative bg-slate-100 overflow-hidden">
           {services.map((service, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 1.1 }}
-              animate={{ 
-                opacity: currentIndex === index ? 1 : 0,
-                scale: currentIndex === index ? 1 : 1.1,
-              }}
-              transition={{ duration: 0.9, ease: [0.4, 0, 0.2, 1] }}
+              animate={{ opacity: currentIndex === index ? 1 : 0 }}
+              transition={{ duration: 0.75, ease: [0.4, 0, 0.2, 1] }}
               className="absolute inset-0"
             >
               <img
@@ -181,21 +197,9 @@ const StickyServices = () => {
                 alt={service.imageAlt}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-black/10" />
+              <div className="absolute inset-0 bg-black/15" />
             </motion.div>
           ))}
-          
-          {/* 인디케이터 */}
-          <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex gap-4 z-30">
-            {services.map((_, index) => (
-              <div 
-                key={index}
-                className={`h-1.5 rounded-full transition-all duration-700 ${
-                  currentIndex === index ? 'w-20 bg-geosang-teal shadow-[0_0_15px_rgba(0,162,142,0.5)]' : 'w-6 bg-white/40'
-                }`}
-              />
-            ))}
-          </div>
         </div>
       </div>
     </div>
@@ -207,7 +211,7 @@ const StickyServices = () => {
  ───────────────────────────────────────────── */
 const Business = () => {
   return (
-    <div className="flex flex-col w-full bg-white font-display pt-20">
+    <div className="flex flex-col w-full bg-white font-display">
       {/* ════════ Hero ════════ */}
       <section className="relative min-h-[95vh] flex items-center justify-center overflow-hidden bg-geosang-deep text-center">
         <div className="absolute inset-0 z-0">
@@ -215,29 +219,23 @@ const Business = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-geosang-deep/90 z-10" />
         </div>
         <div className="relative z-20 container-custom px-4 pt-20">
-          <motion.div 
-            initial={{ opacity: 0, y: 10 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            className="text-geosang-teal text-sm font-bold uppercase tracking-[0.5em] mb-10"
-          >
-            Sustainable Resource Cycle Solutions
-          </motion.div>
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ delay: 0.1 }} 
-            className="text-5xl md:text-[7.5rem] font-light text-white leading-tight mb-14 tracking-tight"
+          
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-5xl md:text-7xl font-light text-white leading-[1.1] mb-10 max-w-4xl mx-auto"
           >
             지속 가능한 미래를 위한<br />
-            <span className="font-bold">포괄적인 <span className="text-geosang-teal">자원 순환</span> 솔루션</span>
+            포괄적인 <span className="text-geosang-teal">자원 순환</span> 솔루션
           </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 15 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ delay: 0.2 }} 
-            className="text-xl md:text-[1.75rem] text-slate-300 font-light leading-relaxed max-w-4xl mx-auto mb-20"
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="text-lg md:text-xl text-white/60 font-light leading-relaxed max-w-2xl mx-auto mb-16"
           >
-            거상자원은 40년 현장 실무의 정직함과 최첨단 디지털 기술을 결합하여<br />
+            거상자원은 40년 현장 실무의 정직함과 최첨단 디지털 기술을 결합하여
             자원 순환의 새로운 글로벌 표준을 제시합니다.
           </motion.p>
           <motion.div
@@ -245,15 +243,7 @@ const Business = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.4 }}
           >
-            <button 
-              onClick={() => {
-                const gallery = document.getElementById('main-services');
-                gallery?.scrollIntoView({ behavior: 'smooth' });
-              }}
-              className="bg-geosang-teal text-white px-12 py-6 rounded-full font-bold text-lg hover:bg-white hover:text-geosang-teal transition-all flex items-center gap-3 mx-auto group shadow-2xl"
-            >
-              우리의 비즈니스 확인하기 <ArrowRight className="group-hover:translate-x-1 transition-transform" />
-            </button>
+            
           </motion.div>
         </div>
       </section>
@@ -263,12 +253,12 @@ const Business = () => {
         <div className="container-custom">
           <div className="flex flex-col lg:flex-row gap-24 items-start">
             <div className="lg:w-1/2 lg:sticky lg:top-40">
-              <div className="text-geosang-teal text-xs font-bold uppercase tracking-[0.4em] mb-8">What We Actually Do</div>
+              <div className="text-geosang-teal text-xs font-bold uppercase tracking-[0.4em] mb-8">우리의 서비스 비전</div>
               <h2 className="text-5xl md:text-6xl font-light text-geosang-deep leading-tight mb-10">
                 우리는 수거를 넘어<br />
-                <span className="font-bold text-geosang-teal tracking-tighter">자원의 가치를 재정의합니다.</span>
+                <span className="text-geosang-teal tracking-tighter">자원의 가치를 재정의합니다.</span>
               </h2>
-              <p className="text-2xl text-slate-400 font-light leading-relaxed mb-12">
+              <p className="text-2xl text-slate-400 font-light leading-relaxed mb-10">
                 거상자원이 수행하는 핵심 사업들은 환경보호를 넘어 <br />
                 기업과 사회에 새로운 경제적 이익을 창출합니다.
               </p>
@@ -287,7 +277,7 @@ const Business = () => {
                         {item.icon}
                       </div>
                       <div>
-                        <h3 className="text-2xl font-bold text-geosang-deep mb-4 group-hover:text-geosang-teal transition-colors tracking-tight">{item.title}</h3>
+                        <h3 className="text-2xl font-medium text-geosang-deep mb-4 group-hover:text-geosang-teal transition-colors tracking-tight">{item.title}</h3>
                         <p className="text-lg text-slate-500 font-light leading-relaxed">{item.desc}</p>
                       </div>
                     </div>
@@ -305,7 +295,7 @@ const Business = () => {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-0 md:divide-x md:divide-slate-200">
             {stats.map((s, i) => (
               <div key={i} className="flex flex-col items-center px-6">
-                <div className="text-5xl md:text-7xl font-black text-geosang-deep mb-4 tracking-tighter">{s.value}</div>
+                <div className="text-5xl md:text-7xl font-light text-geosang-deep mb-4 tracking-tighter">{s.value}</div>
                 <div className="text-[11px] font-bold uppercase tracking-[0.3em] text-slate-400">{s.label}</div>
               </div>
             ))}
@@ -322,7 +312,7 @@ const Business = () => {
           <div className="text-center max-w-3xl mx-auto mb-24">
             <div className="text-geosang-teal text-xs font-bold uppercase tracking-[0.4em] mb-8">Infrastructure & Success</div>
             <h2 className="text-4xl md:text-5xl font-light text-geosang-deep mb-8 leading-tight">
-              거상자원의 전문성은<br /><span className="font-bold text-geosang-teal">숫자와 파트너의 신뢰로 증명됩니다.</span>
+              거상자원의 전문성은<br /><span className=" text-geosang-teal">숫자와 파트너의 신뢰로 증명됩니다.</span>
             </h2>
             <p className="text-xl text-slate-500 font-light">이미 국내 유수의 기업들이 거상자원과 함께 자원순환의 가치를 실현하고 있습니다.</p>
           </div>
@@ -332,11 +322,9 @@ const Business = () => {
                 <div className="h-20 mb-12 overflow-hidden rounded-2xl grayscale group-hover:grayscale-0 transition-all opacity-50 group-hover:opacity-100 shadow-sm">
                   <img src={partner.logo} alt={partner.name} className="w-full h-full object-cover" />
                 </div>
-                <h3 className="text-2xl font-bold text-geosang-deep mb-5 group-hover:text-geosang-teal transition-colors">{partner.name}</h3>
+                <h3 className="text-2xl font-light text-geosang-deep mb-5 group-hover:text-geosang-teal transition-colors">{partner.name}</h3>
                 <p className="text-lg text-slate-500 font-light mb-10 leading-relaxed">{partner.desc}</p>
-                <div className="inline-flex items-center gap-2 text-geosang-teal font-bold text-sm tracking-widest uppercase border-b-2 border-geosang-teal/20 pb-2 group-hover:border-geosang-teal transition-all">
-                  Contact Specialist <ArrowRight size={16} />
-                </div>
+                
               </div>
             ))}
           </div>
@@ -353,7 +341,7 @@ const Business = () => {
           <motion.h2 
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
-            className="text-5xl md:text-8xl font-bold text-white mb-16 leading-tight tracking-tighter"
+            className="text-5xl md:text-7xl text-white mb-10 leading-tight tracking-tighter"
           >
             지속 가능한 비즈니스,<br /><span className="text-geosang-teal">거상자원이 실천합니다.</span>
           </motion.h2>
@@ -361,10 +349,10 @@ const Business = () => {
             귀사의 폐기물 관리를 데이터와 전문성 기반의 <br className="hidden md:block" /> 핵심 비즈니스 자산으로 전환해 보세요.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
-            <button onClick={() => window.location.hash = 'contact'} className="bg-geosang-teal text-white hover:bg-white hover:text-geosang-teal px-16 py-8 rounded-full font-bold text-xl transition-all shadow-[0_20px_50px_rgba(0,162,142,0.3)] flex items-center gap-4 group">
+            <button onClick={() => window.location.hash = 'get-started'} className="bg-geosang-teal text-white hover:bg-white hover:text-geosang-teal px-16 py-8 rounded-full font-medium text-xl transition-all shadow-[0_20px_50px_rgba(0,162,142,0.3)] flex items-center gap-4 group">
               솔루션 상담 신청 <ArrowRight className="group-hover:translate-x-2 transition-transform" />
             </button>
-            <button className="border border-white/30 text-white hover:bg-white/10 px-16 py-8 rounded-full font-bold text-xl transition-all">
+            <button className="border border-white/30 text-white hover:bg-white/10 px-16 py-8 rounded-full font-medium text-xl transition-all">
               소개서 다운로드
             </button>
           </div>

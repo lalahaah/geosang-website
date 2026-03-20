@@ -11,8 +11,8 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
   const t = translations[lang].footer;
 
   return (
-    <footer className="bg-[#093944] text-white pt-24 pb-12 font-light">
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <footer className="bg-[#093944] text-white pt-24 pb-12 font-display font-light">
+      <div className="container-custom">
         {/* Top Footer: Logo, Socials, Newsletter */}
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-12 pb-16 border-b border-white/10 mb-16">
           <div className="flex items-center gap-3 group cursor-pointer" onClick={() => window.location.href = '/'}>
