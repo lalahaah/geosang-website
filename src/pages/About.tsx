@@ -30,21 +30,34 @@ const About = () => {
           <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/30 to-black/55 z-10" />
         </div>
 
-        {/* 텍스트 블록: 위쪽으로 배치 (헤더 높이만큼 상쇄) */}
-        <div className="relative z-20 container-custom text-center flex flex-col items-center -mt-20">
-          {/* 요청에 따라 작은 글씨("About Geosang") 제거 */}
+        <div className="relative z-20 container-custom py-20 text-center flex flex-col items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-geosang-teal text-sm font-bold uppercase tracking-[0.2em] mb-8"
+          >
+            OUR HERITAGE &amp; VISION
+          </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-5xl md:text-7xl font-light text-white leading-[1.1] max-w-4xl"
+            transition={{ delay: 0.2 }}
+            className="text-5xl md:text-7xl font-light text-white leading-[1.1] mb-10 max-w-4xl"
           >
             신뢰로 쌓아온 40년,<br />
             <span className="text-geosang-teal">기술로 여는 순환의 미래.</span>
           </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            className="text-lg md:text-xl text-white/60 mb-12 leading-relaxed max-w-2xl font-light"
+          >
+            1g의 오차도 허용하지 않던 현장의 정직한 땀방울을 투명한 디지털 데이터로 치환하여,<br />
+            자원순환 산업의 새로운 패러다임을 만들어갑니다.
+          </motion.p>
         </div>
 
-        {/* 스크롤 인디케이터 */}
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ repeat: Infinity, duration: 2.5 }}

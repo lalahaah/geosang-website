@@ -218,34 +218,41 @@ const Business = () => {
           <img src={heroBg} alt="" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/30 to-black/55 z-10" />
         </div>
-        <div className="relative z-20 container-custom px-4 pt-20">
-          
+        <div className="relative z-20 container-custom py-20 text-center flex flex-col items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-geosang-teal text-sm font-bold uppercase tracking-[0.2em] mb-8"
+          >
+            CORE BUSINESS SOLUTIONS
+          </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+            transition={{ delay: 0.2 }}
             className="text-5xl md:text-7xl font-light text-white leading-[1.1] mb-10 max-w-4xl mx-auto"
           >
             지속 가능한 미래를 위한<br />
-            포괄적인 <span className="text-geosang-teal">자원 순환</span> 솔루션
+            <span className="text-geosang-teal">포괄적인 자원 순환 솔루션</span>
           </motion.h1>
           <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl text-white/60 font-light leading-relaxed max-w-2xl mx-auto mb-16"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            className="text-lg md:text-xl text-white/60 font-light leading-relaxed max-w-2xl mx-auto mb-12"
           >
-            거상자원은 40년 현장 실무의 정직함과 최첨단 디지털 기술을 결합하여
+            거상자원은 40년 현장 실무의 정직함과 최첨단 디지털 기술을 결합하여<br />
             자원 순환의 새로운 글로벌 표준을 제시합니다.
           </motion.p>
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.4 }}
-          >
-            
-          </motion.div>
         </div>
+
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ repeat: Infinity, duration: 2.5 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-30"
+        >
+          <div className="w-[1px] h-16 bg-gradient-to-b from-white to-transparent" />
+        </motion.div>
       </section>
 
       {/* ════════ Value Proposition ════════ */}
