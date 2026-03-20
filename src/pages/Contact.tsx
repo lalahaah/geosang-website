@@ -1,11 +1,11 @@
-import React from 'react';
+import { type Lang, translations } from '../translations';
+import { type FC } from 'react';
 import { motion } from 'framer-motion';
 import { Phone, MapPin, Handshake, Quote, Truck, Globe, ShieldCheck, Leaf } from 'lucide-react';
-import { translations } from '../translations';
 
-interface ContactProps { lang: 'ko' | 'en' }
+interface ContactProps { lang: Lang }
 
-const Contact: React.FC<ContactProps> = ({ lang }) => {
+const Contact: FC<ContactProps> = ({ lang }) => {
   const t = (translations[lang] as any).contact;
 
   return (

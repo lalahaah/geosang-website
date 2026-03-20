@@ -1,5 +1,7 @@
-import React from 'react';
+import { type Lang, translations } from '../translations';
+import { type FC } from 'react';
 import { motion } from 'framer-motion';
+import PageHero from '../components/PageHero';
 import {
   ShieldCheck,
   Recycle,
@@ -10,14 +12,13 @@ import {
   Target,
   Users,
 } from 'lucide-react';
-import { translations } from '../translations';
 // About 히어로 이미지
 const aboutHero = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2560&auto=format&fit=crop';
 // CTA 배경 로고 import
 import logoImg from '../assets/logo.svg';
 
-interface AboutProps { lang: 'ko' | 'en' }
-const About: React.FC<AboutProps> = ({ lang }) => {
+interface AboutProps { lang: Lang }
+const About: FC<AboutProps> = ({ lang }) => {
   const t = (translations[lang] as any).about;
 
   const valueIcons = [
@@ -31,52 +32,14 @@ const About: React.FC<AboutProps> = ({ lang }) => {
     // pt-0: 헤더와 히어로 섹션이 겹치도록 상단 패딩 제거
     <div className="flex flex-col w-full bg-white font-display overflow-x-hidden">
 
-      {/* ─── Hero Section ─── 랜딩페이지와 동일하게 헤더와 겹침, 이미지 원본 사용 */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-slate-900">
-        <div className="absolute inset-0 z-0">
-          <img
-            src={aboutHero}
-            alt="거상자원"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/30 to-black/55 z-10" />
-        </div>
-
-        <div className="relative z-20 container-custom py-20 text-center flex flex-col items-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-geosang-teal text-sm font-bold uppercase tracking-[0.2em] mb-8"
-          >
-            {t.hero.kicker}
-          </motion.div>
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="text-5xl md:text-7xl font-light text-white leading-[1.1] mb-10 max-w-4xl"
-          >
-            {t.hero.h1Part1}<br />
-            <span className="text-geosang-teal">{t.hero.h1Part2}</span>
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="text-lg md:text-xl text-white/60 mb-12 leading-relaxed max-w-2xl font-light"
-          >
-            {t.hero.sub}
-          </motion.p>
-        </div>
-
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 2.5 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-30"
-        >
-          <div className="w-[1px] h-16 bg-gradient-to-b from-white to-transparent" />
-        </motion.div>
-      </section>
+      {/* ─── Hero Section ─── */}
+      <PageHero
+        bgImage={aboutHero}
+        kicker={t.hero.kicker}
+        h1={t.hero.h1Part1}
+        h1Teal={t.hero.h1Part2}
+        subtitle={t.hero.sub}
+      />
 
       {/* ─── Our Story Section ─── */}
       <section className="section-padding bg-white">

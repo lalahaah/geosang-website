@@ -1,11 +1,11 @@
+import { type Lang, translations } from '../translations';
 import { useState, useEffect } from 'react';
 import { Menu, X, ChevronRight } from 'lucide-react';
-import { translations } from '../translations';
 import logo from '../assets/logo.svg';
 
 interface NavbarProps {
-  lang: 'ko' | 'en';
-  setLang: (lang: 'ko' | 'en') => void;
+  lang: Lang;
+  setLang: (lang: Lang) => void;
 }
 
 const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {

@@ -1,11 +1,12 @@
+import { type Lang } from '../translations';
 import React from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
 
 interface LayoutProps {
   children: React.ReactNode;
-  lang: 'ko' | 'en';
-  setLang: (lang: 'ko' | 'en') => void;
+  lang: Lang;
+  setLang: (lang: Lang) => void;
 }
 
 const Layout: React.FC<LayoutProps> = ({ children, lang, setLang }) => {

@@ -1,3 +1,5 @@
+export type Lang = 'ko' | 'en';
+
 export const translations = {
   ko: {
     navbar: {

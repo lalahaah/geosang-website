@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import { type Lang, translations } from '../translations';
+import { type FC, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Building2, Store, Truck, ChevronDown, CheckCircle2 } from 'lucide-react';
-import { translations } from '../translations';
+import { Building2, Store, Truck, ChevronDown } from 'lucide-react';
+import FormSuccessScreen from '../components/FormSuccessScreen';
 
-interface GetStartedProps { lang: 'ko' | 'en' }
+interface GetStartedProps { lang: Lang }
 
-const GetStarted: React.FC<GetStartedProps> = ({ lang }) => {
-  const t = (translations as any)[lang].getStarted;
+const GetStarted: FC<GetStartedProps> = ({ lang }) => {
+  const t = (translations[lang] as any).getStarted;
 
   const [userType, setUserType] = useState<'enterprise' | 'independent' | 'hauler' | null>(null);
   const [submitted, setSubmitted] = useState(false);
@@ -21,37 +22,13 @@ const GetStarted: React.FC<GetStartedProps> = ({ lang }) => {
   };
 
   if (submitted) {
-    return (
-      <div className="min-h-screen bg-white font-display pt-32 pb-20 flex items-center justify-center">
-        <div className="container-custom max-w-2xl text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="bg-geosang-bg p-12 rounded-3xl border border-slate-100 shadow-xl"
-          >
-            <div className="w-20 h-20 bg-geosang-teal/10 rounded-full flex items-center justify-center mx-auto mb-8">
-              <CheckCircle2 size={40} className="text-geosang-teal" />
-            </div>
-            <h2 className="text-3xl font-bold text-geosang-deep mb-4">{t.success.h2}</h2>
-            <p className="text-slate-500 mb-8 leading-relaxed">
-              {t.success.p}
-            </p>
-            <button
-              onClick={() => window.location.hash = 'home'}
-              className="px-8 py-3 bg-geosang-deep text-white rounded-full hover:bg-geosang-teal transition-all"
-            >
-              {t.success.btn}
-            </button>
-          </motion.div>
-        </div>
-      </div>
-    );
+    return <FormSuccessScreen h2={t.success.h2} paragraph={t.success.p} btnLabel={t.success.btn} />;
   }
 
   return (
     <div className="min-h-screen bg-white font-display overflow-x-hidden">
       {/* Hero Section */}
-      <section className="pt-40 pb-20 bg-[#093944] overflow-hidden">
+      <section className="pt-40 pb-20 bg-geosang-dark overflow-hidden">
         <div className="container-custom max-w-4xl text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

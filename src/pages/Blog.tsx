@@ -1,7 +1,8 @@
+import { type Lang, translations } from '../translations';
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, ExternalLink } from 'lucide-react';
-import { translations } from '../translations';
+import DarkCTASection from '../components/DarkCTASection';
 
 const allPosts = [
   {
@@ -74,7 +75,7 @@ const koCategories = ['전체', '지속가능성', '기술', '비즈니스', 'ES
 
 const PAGE_SIZE = 6;
 
-interface BlogProps { lang: 'ko' | 'en' }
+interface BlogProps { lang: Lang }
 const Blog: React.FC<BlogProps> = ({ lang }) => {
   const t = (translations[lang] as any).blog;
   const displayCategories = (t.categories as string[]) || koCategories;
@@ -98,7 +99,7 @@ const Blog: React.FC<BlogProps> = ({ lang }) => {
     <div className="flex flex-col w-full font-display bg-white">
 
       {/* ── Hero ── */}
-      <section className="relative pt-40 pb-20 bg-[#093944] overflow-hidden">
+      <section className="relative pt-40 pb-20 bg-geosang-dark overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04] flex items-center pointer-events-none">
           <div className="w-full h-full bg-[radial-gradient(circle_at_30%_50%,rgba(0,194,181,0.3),transparent_60%)]" />
         </div>
@@ -217,32 +218,12 @@ const Blog: React.FC<BlogProps> = ({ lang }) => {
       </section>
 
       {/* ── Newsletter CTA ── */}
-      <section className="section-padding bg-[#093944] relative overflow-hidden">
-        <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
-          <div className="w-[700px] h-[700px] rounded-full bg-geosang-teal/5 blur-3xl" />
-        </div>
-        <div className="container-custom relative z-10 text-center py-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-2xl mx-auto"
-          >
-            <h2 className="text-4xl md:text-5xl font-light text-white mb-10 leading-tight">
-              {t.cta.h2} <span className="text-geosang-teal italic">{t.cta.h2Teal}</span>
-            </h2>
-            <p className="text-xl text-white/60 font-light mb-12">
-              {t.cta.p}
-            </p>
-            <button
-              onClick={() => window.location.hash = 'get-started'}
-              className="px-12 py-5 bg-geosang-teal hover:bg-[#008f84] text-white font-bold rounded-full text-xl transition-all shadow-2xl shadow-geosang-teal/20 active:scale-95 flex items-center gap-3 mx-auto"
-            >
-              {t.cta.btn} <ArrowRight size={24} />
-            </button>
-          </motion.div>
-        </div>
-      </section>
+      <DarkCTASection
+        h2={t.cta.h2}
+        h2Teal={t.cta.h2Teal}
+        paragraph={t.cta.p}
+        primaryBtn={t.cta.btn}
+      />
     </div>
   );
 };

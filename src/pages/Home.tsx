@@ -1,6 +1,6 @@
+import { type Lang, translations } from '../translations';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { translations } from '../translations';
 // 히어로 섹션 배경 이미지 import
 import heroBg from '../assets/herosection-bg.avif';
 // CTA 섹션 배경 로고 이미지 import
@@ -26,7 +26,7 @@ import {
 } from 'lucide-react';
 
 interface HomeProps {
-  lang: 'ko' | 'en';
+  lang: Lang;
 }
 
 const Home: React.FC<HomeProps> = ({ lang }) => {
@@ -216,7 +216,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
 
       {/* How We Do It Section (4-Step Value Chain) */}
       {/* 태그: 진행 프로세스 → 프로세스, 스텝 간격 축소 */}
-      <section className="section-padding bg-[#093944] text-white overflow-hidden" id="how-we-do-it">
+      <section className="section-padding bg-geosang-dark text-white overflow-hidden" id="how-we-do-it">
         <div className="container-custom">
           <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
             {/* Left Side: Sticky Title & Description */}
@@ -249,7 +249,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
                 onClick={() => window.location.hash = 'get-started'}
-                className="px-10 py-4 bg-transparent border border-white hover:bg-white hover:text-[#093944] rounded-full transition-all text-lg font-medium active:scale-95 group flex items-center gap-3"
+                className="px-10 py-4 bg-transparent border border-white hover:bg-white hover:text-geosang-dark rounded-full transition-all text-lg font-medium active:scale-95 group flex items-center gap-3"
               >
                 {t.howWeDoIt.cta}
                 <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
@@ -526,7 +526,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
       </section>
 
       {/* CTA Section — '함께 미래로' */}
-      <section className="section-padding bg-[#093944] relative overflow-hidden" id="take-next-step">
+      <section className="section-padding bg-geosang-dark relative overflow-hidden" id="take-next-step">
         <div className="absolute inset-0 z-[1] flex items-center justify-center pointer-events-none overflow-hidden">
           <img
             src={logoImg}
@@ -561,7 +561,7 @@ const Home: React.FC<HomeProps> = ({ lang }) => {
             {/* 뉴스레터 구독 폼 삭제 — 시작하기 버튼만 유지 */}
             <button
               onClick={() => window.location.hash = 'get-started'}
-              className="px-12 py-5 bg-geosang-teal hover:bg-[#008f84] text-white font-bold rounded-full text-xl transition-all shadow-2xl shadow-geosang-teal/20 active:scale-95 flex items-center gap-3 mx-auto"
+              className="px-12 py-5 bg-geosang-teal hover:bg-geosang-teal-dark text-white font-bold rounded-full text-xl transition-all shadow-2xl shadow-geosang-teal/20 active:scale-95 flex items-center gap-3 mx-auto"
             >
               {t.cta.btn}
               <ArrowRight size={24} />

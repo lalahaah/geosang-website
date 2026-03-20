@@ -1,4 +1,5 @@
-import React from 'react';
+import { type Lang, translations } from '../translations';
+import { type FC } from 'react';
 import { motion } from 'framer-motion';
 import {
   Leaf,
@@ -16,21 +17,20 @@ import {
   HeartHandshake,
   Scale,
 } from 'lucide-react';
-import logoImg from '../assets/logo.svg';
-import { translations } from '../translations';
+import DarkCTASection from '../components/DarkCTASection';
 
 /* ─────────────────────────────────────────────
    Props
  ───────────────────────────────────────────── */
 interface ESGProps {
-  lang: 'ko' | 'en';
+  lang: Lang;
 }
 
 /* ─────────────────────────────────────────────
    메인 컴포넌트
  ───────────────────────────────────────────── */
-const ESG: React.FC<ESGProps> = ({ lang }) => {
-  const t = (translations as any)[lang].esg;
+const ESG: FC<ESGProps> = ({ lang }) => {
+  const t = (translations[lang] as any).esg;
 
   const pillarIcons = [
     <Leaf className="w-8 h-8" />,
@@ -126,7 +126,7 @@ const ESG: React.FC<ESGProps> = ({ lang }) => {
     <div className="flex flex-col w-full font-display bg-white">
 
       {/* ════════ Hero ════════ */}
-      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-[#093944]">
+      <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden bg-geosang-dark">
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?q=80&w=2560&auto=format&fit=crop"
@@ -248,7 +248,7 @@ const ESG: React.FC<ESGProps> = ({ lang }) => {
       </section>
 
       {/* ════════ E · S · G 세 기둥 ════════ */}
-      <section className="section-padding bg-[#093944] text-white overflow-hidden">
+      <section className="section-padding bg-geosang-dark text-white overflow-hidden">
         <div className="container-custom">
           <div className="text-center mb-20">
             <div className="text-geosang-teal text-sm font-medium uppercase tracking-[0.25em] mb-5">Three Pillars</div>
@@ -466,7 +466,7 @@ const ESG: React.FC<ESGProps> = ({ lang }) => {
       </section>
 
       {/* ════════ UN SDGs ════════ */}
-      <section className="section-padding bg-[#093944] text-white overflow-hidden">
+      <section className="section-padding bg-geosang-dark text-white overflow-hidden">
         <div className="container-custom">
           <div className="flex flex-col lg:flex-row gap-16 items-start">
             <div className="lg:w-1/3 lg:sticky lg:top-32 self-start">
@@ -561,41 +561,13 @@ const ESG: React.FC<ESGProps> = ({ lang }) => {
       </section>
 
       {/* ════════ CTA ════════ */}
-      <section className="section-padding bg-[#093944] relative overflow-hidden">
-        <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
-          <img src={logoImg} alt="" className="w-[600px] opacity-[0.04] object-contain select-none" />
-        </div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,194,181,0.1),transparent_60%)]" />
-
-        <div className="container-custom relative z-10 text-center py-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="max-w-3xl mx-auto"
-          >
-            <div className="text-geosang-teal text-sm font-medium uppercase tracking-[0.25em] mb-8">{t.cta.tag}</div>
-            <h2 className="text-4xl md:text-5xl font-light text-white mb-10 leading-tight">
-              {t.cta.h2}<br />
-              <span className="text-geosang-teal italic">{t.cta.h2Teal}</span>
-            </h2>
-            <p className="text-xl text-white/60 font-light mb-12 max-w-xl mx-auto leading-relaxed">
-              {t.cta.p}
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
-              <button
-                onClick={() => window.location.hash = 'get-started'}
-                className="px-12 py-5 bg-geosang-teal hover:bg-[#008f84] text-white font-bold rounded-full text-xl transition-all shadow-2xl shadow-geosang-teal/20 active:scale-95 flex items-center gap-3 mx-auto sm:mx-0"
-              >
-                {t.cta.btn1} <ArrowRight size={24} />
-              </button>
-              <button className="px-12 py-5 border border-white/20 text-white rounded-full font-bold text-xl hover:bg-white/10 transition-all">
-                {t.cta.btn2}
-              </button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      <DarkCTASection
+        h2={t.cta.h2}
+        h2Teal={t.cta.h2Teal}
+        paragraph={t.cta.p}
+        primaryBtn={t.cta.btn1}
+        secondaryBtn={t.cta.btn2}
+      />
 
     </div>
   );

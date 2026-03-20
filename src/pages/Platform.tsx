@@ -1,6 +1,6 @@
-import React from 'react';
+import { type Lang, translations } from '../translations';
+import { type FC, useRef, useState } from 'react';
 import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
-import { useRef, useState } from 'react';
 import {
   Cpu,
   LineChart,
@@ -18,20 +18,19 @@ import {
   Link2,
 } from 'lucide-react';
 import logoImg from '../assets/logo.svg';
-import { translations } from '../translations';
 
 /* ─────────────────────────────────────────────
    Props
  ───────────────────────────────────────────── */
 interface PlatformProps {
-  lang: 'ko' | 'en';
+  lang: Lang;
 }
 
 /* ─────────────────────────────────────────────
    메인 컴포넌트
  ───────────────────────────────────────────── */
-const Platform: React.FC<PlatformProps> = ({ lang }) => {
-  const t = (translations as any)[lang].platform;
+const Platform: FC<PlatformProps> = ({ lang }) => {
+  const t = (translations[lang] as any).platform;
 
   const featureIcons = [
     <Smartphone className="w-5 h-5" />,
@@ -540,7 +539,7 @@ const Platform: React.FC<PlatformProps> = ({ lang }) => {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
                 <button
                   onClick={() => window.location.hash = 'get-started'}
-                  className="px-12 py-5 bg-geosang-teal hover:bg-[#008f84] text-white font-bold rounded-full text-xl transition-all shadow-2xl shadow-geosang-teal/20 active:scale-95 flex items-center gap-3"
+                  className="px-12 py-5 bg-geosang-teal hover:bg-geosang-teal-dark text-white font-bold rounded-full text-xl transition-all shadow-2xl shadow-geosang-teal/20 active:scale-95 flex items-center gap-3"
                 >
                   {t.cta.btn1} <ArrowRight size={24} />
                 </button>

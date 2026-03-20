@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import { type Lang, translations } from '../translations';
+import { type FC, useState, type FormEvent } from 'react';
 import { motion } from 'framer-motion';
 import { Truck, Layers, Monitor, ChevronDown, CheckCircle2 } from 'lucide-react';
-import { translations } from '../translations';
 
 type RoleType = 'logistics' | 'field' | 'office' | null;
 
-interface CareersProps { lang: 'ko' | 'en' }
+interface CareersProps { lang: Lang }
 
-const Careers: React.FC<CareersProps> = ({ lang }) => {
-  const t = (translations as any)[lang].careers;
+const Careers: FC<CareersProps> = ({ lang }) => {
+  const t = (translations[lang] as any).careers;
 
   const roleIds = ['logistics', 'field', 'office'];
   const roleIcons = [<Truck size={24} />, <Layers size={24} />, <Monitor size={24} />];
@@ -17,7 +17,7 @@ const Careers: React.FC<CareersProps> = ({ lang }) => {
   const [career, setCareer] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitted(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -55,7 +55,7 @@ const Careers: React.FC<CareersProps> = ({ lang }) => {
     <div className="min-h-screen bg-white font-display overflow-x-hidden">
 
       {/* ── Hero ── */}
-      <section className="pt-40 pb-20 bg-[#093944] overflow-hidden">
+      <section className="pt-40 pb-20 bg-geosang-dark overflow-hidden">
         <div className="container-custom max-w-4xl text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
