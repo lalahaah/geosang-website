@@ -9,7 +9,7 @@ const Careers = () => {
   const [career, setCareer] = useState('');
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitted(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -48,7 +48,7 @@ const Careers = () => {
     <div className="min-h-screen bg-white font-display overflow-x-hidden">
 
       {/* ── Hero ── */}
-      <section className="pt-40 pb-20 bg-slate-50">
+      <section className="pt-40 pb-20 bg-[#093944] overflow-hidden">
         <div className="container-custom max-w-4xl text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -61,7 +61,7 @@ const Careers = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-5xl md:text-6xl font-light text-geosang-deep mb-6"
+            className="text-5xl md:text-6xl font-light text-white mb-6"
           >
             거상자원과 함께 성장하기
           </motion.h1>
@@ -69,7 +69,7 @@ const Careers = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-slate-500 font-light max-w-2xl mx-auto"
+            className="text-xl text-white/60 font-light max-w-2xl mx-auto"
           >
             40년의 현장 경험과 디지털 혁신이 만나는 곳에서 함께 일할 인재를 찾습니다.
             아래 지원서를 작성해 주세요.

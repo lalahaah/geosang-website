@@ -44,7 +44,7 @@ const GetStarted = () => {
   return (
     <div className="min-h-screen bg-white font-display overflow-x-hidden">
       {/* Hero Section */}
-      <section className="pt-40 pb-20 bg-slate-50">
+      <section className="pt-40 pb-20 bg-[#093944] overflow-hidden">
         <div className="container-custom max-w-4xl text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -57,7 +57,7 @@ const GetStarted = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-5xl md:text-6xl font-light text-geosang-deep mb-6"
+            className="text-5xl md:text-6xl font-light text-white mb-6"
           >
             거상자원과 연결하기
           </motion.h1>
@@ -65,7 +65,7 @@ const GetStarted = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-xl text-slate-500 font-light max-w-2xl mx-auto"
+            className="text-xl text-white/60 font-light max-w-2xl mx-auto"
           >
             아래 폼을 작성해 주시면 담당 전문가가 귀하의 비즈니스에 최적화된 자원 순환 솔루션을 들고 연락드리겠습니다.
           </motion.p>
