@@ -29,6 +29,11 @@
   filter: invert(48%) sepia(79%) saturate(2256%) hue-rotate(143deg) brightness(92%) contrast(101%);
 }
 
+/* 모바일에서 더 강력한 필터 */
+@utility filter-geosang-teal-mobile {
+  filter: invert(45%) sepia(85%) saturate(3000%) hue-rotate(160deg) brightness(95%) contrast(110%);
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;

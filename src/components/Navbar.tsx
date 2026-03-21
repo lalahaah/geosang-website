@@ -46,7 +46,7 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
                 src={logo}
                 alt="GEOSANG RESOURCES"
                 className={`w-full h-full object-contain transition-all duration-500 ${
-                  isScrolled ? 'filter-geosang-teal' : 'sm:filter-white filter-geosang-teal'
+                  isScrolled ? 'sm:filter-geosang-teal filter-geosang-teal-mobile' : 'sm:filter-white filter-geosang-teal-mobile'
                 }`}
               />
             </div>

@@ -129,7 +129,7 @@ const About: FC<AboutProps> = ({ lang }) => {
               <img
                 src={logoImg}
                 alt="거상자원 심볼"
-                className="w-full h-full object-contain filter-geosang-teal"
+                className="w-full h-full object-contain filter-geosang-teal-mobile"
               />
             </div>
             <h2 className="text-3xl md:text-5xl font-light text-white leading-relaxed mb-12">
