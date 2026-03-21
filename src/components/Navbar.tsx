@@ -1,7 +1,8 @@
 import { type Lang, translations } from '../translations';
 import { useState, useEffect } from 'react';
 import { Menu, X, ChevronRight } from 'lucide-react';
-import logo from '../assets/logo.svg';
+import logoWhite from '../assets/logo-white.png';
+import logoTeal from '../assets/logo-teal.png';
 
 interface NavbarProps {
   lang: Lang;
@@ -43,11 +44,9 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
           <div className="flex items-center gap-2 group cursor-pointer" onClick={() => window.location.href = '/'}>
             <div className="w-12 h-12 flex items-center justify-center transform group-hover:scale-110 transition-transform">
               <img
-                src={logo}
+                src={isScrolled ? logoTeal : logoWhite}
                 alt="GEOSANG RESOURCES"
-                className={`w-full h-full object-contain transition-all duration-500 ${
-                  isScrolled ? 'filter-geosang-teal' : 'filter-white'
-                }`}
+                className="w-full h-full object-contain transition-all duration-500"
               />
             </div>
             <div className={`hidden sm:flex text-xl font-bold tracking-tight transition-colors items-center gap-2 ${
