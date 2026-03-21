@@ -42,12 +42,12 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
           {/* Logo Section */}
           <div className="flex items-center gap-2 group cursor-pointer" onClick={() => window.location.href = '/'}>
             <div className="w-12 h-12 flex items-center justify-center transform group-hover:scale-110 transition-transform">
-              <img 
-                src={logo} 
-                alt="GEOSANG RESOURCES" 
+              <img
+                src={logo}
+                alt="GEOSANG RESOURCES"
                 className={`w-full h-full object-contain transition-all duration-500 ${
-                  isScrolled ? 'filter-geosang-teal' : 'filter-white'
-                }`} 
+                  isScrolled ? 'filter-geosang-teal' : 'sm:filter-white filter-geosang-teal'
+                }`}
               />
             </div>
             <div className={`hidden sm:flex text-xl font-bold tracking-tight transition-colors items-center gap-2 ${

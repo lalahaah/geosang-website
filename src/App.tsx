@@ -14,19 +14,33 @@ import { type Lang } from './translations';
 
 const VALID_PAGES = ['home', 'about', 'solutions', 'infrastructure', 'platform', 'contact', 'get-started', 'service', 'process', 'esg', 'blog', 'careers'] as const;
 
+type PageName = typeof VALID_PAGES[number];
+
+const PAGE_MAP: Record<PageName, string> = {
+  'home': 'home',
+  'about': 'about',
+  'solutions': 'business',
+  'infrastructure': 'business',
+  'platform': 'platform',
+  'contact': 'contact',
+  'get-started': 'get-started',
+  'service': 'business',
+  'process': 'process',
+  'esg': 'esg',
+  'blog': 'blog',
+  'careers': 'careers'
+};
+
 function App() {
-  const [currentPage, setCurrentPage] = useState('home');
+  const [currentPage, setCurrentPage] = useState<string>('home');
   const [lang, setLang] = useState<Lang>('ko');
 
   useEffect(() => {
     const handleHashChange = () => {
-      const hash = window.location.hash.replace('#', '') as typeof VALID_PAGES[number];
-      if ((VALID_PAGES as readonly string[]).includes(hash)) {
-        if (hash === 'solutions' || hash === 'infrastructure' || hash === 'service') {
-          setCurrentPage('business');
-        } else {
-          setCurrentPage(hash);
-        }
+      const hash = window.location.hash.replace('#', '');
+      if (VALID_PAGES.includes(hash as PageName)) {
+        const pageName = PAGE_MAP[hash as PageName];
+        setCurrentPage(pageName);
         window.scrollTo({ top: 0, behavior: 'instant' });
       } else {
         setCurrentPage('home');
