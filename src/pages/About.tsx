@@ -15,8 +15,7 @@ import {
 // About 히어로 이미지
 const aboutHero = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2560&auto=format&fit=crop';
 // CTA 배경 로고 import
-import logoSvg from '../assets/logo.svg';
-import logoPng from '../assets/logo.png';
+import logoImg from '../assets/logo.svg';
 
 interface AboutProps { lang: Lang }
 const About: FC<AboutProps> = ({ lang }) => {
@@ -127,9 +126,7 @@ const About: FC<AboutProps> = ({ lang }) => {
           <div className="max-w-4xl mx-auto">
             {/* 아이콘: 기존 Target 아이콘 → 거상자원 심볼 로고로 교체 */}
             <div className="w-20 h-20 mx-auto mb-10 flex items-center justify-center">
-              {/* 모바일: PNG, PC: SVG (필터 적용) */}
-              <img src={logoPng} alt="거상자원 심볼" className="sm:hidden w-full h-full object-contain" />
-              <img src={logoSvg} alt="거상자원 심볼" className="hidden sm:block w-full h-full object-contain filter-geosang-teal" />
+              <img src={logoImg} alt="거상자원 심볼" className="w-full h-full object-contain filter-geosang-teal" />
             </div>
             <h2 className="text-3xl md:text-5xl font-light text-white leading-relaxed mb-12">
               {t.mission.quote}
@@ -226,7 +223,7 @@ const About: FC<AboutProps> = ({ lang }) => {
         {/* 배경 로고 워터마크 */}
         <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none overflow-hidden">
           <img
-            src={logoSvg}
+            src={logoImg}
             alt=""
             className="w-[500px] opacity-[0.06] object-contain select-none filter-geosang-teal"
           />

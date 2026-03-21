@@ -1,7 +1,6 @@
 import { type Lang, translations } from '../translations';
 import { Facebook, Twitter, Linkedin, Instagram, ArrowRight } from 'lucide-react';
-import logoSvg from '../assets/logo.svg';
-import logoPng from '../assets/logo.png';
+import logo from '../assets/logo.svg';
 
 interface FooterProps {
   lang: Lang;
@@ -18,9 +17,7 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 sm:gap-12 pb-16 border-b border-white/10 mb-16">
           <div className="flex items-center gap-3 group cursor-pointer" onClick={() => window.location.href = '/'}>
             <div className="group-hover:rotate-12 transition-transform w-14 h-14 flex items-center justify-center">
-              {/* 모바일: PNG, PC: SVG (필터 적용) */}
-              <img src={logoPng} alt="GEOSANG RESOURCES" className="sm:hidden w-full h-full object-contain" />
-              <img src={logoSvg} alt="GEOSANG RESOURCES" className="hidden sm:block w-full h-full object-contain filter-geosang-teal" />
+              <img src={logo} alt="GEOSANG RESOURCES" className="w-full h-full object-contain filter-geosang-teal" />
             </div>
             <div className="text-2xl font-bold tracking-tight flex items-center gap-2 text-geosang-teal">
               <span>GEOSANG</span>
