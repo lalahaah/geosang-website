@@ -1,7 +1,8 @@
 import { type Lang, translations } from '../translations';
 import { useState, useEffect } from 'react';
 import { Menu, X, ChevronRight } from 'lucide-react';
-import logo from '../assets/logo.svg';
+import logoSvg from '../assets/logo.svg';
+import logoPng from '../assets/logo.png';
 
 interface NavbarProps {
   lang: Lang;
@@ -42,11 +43,17 @@ const Navbar: React.FC<NavbarProps> = ({ lang, setLang }) => {
           {/* Logo Section */}
           <div className="flex items-center gap-2 group cursor-pointer" onClick={() => window.location.href = '/'}>
             <div className="w-12 h-12 flex items-center justify-center transform group-hover:scale-110 transition-transform">
+              {/* 모바일: PNG (색상 이미 적용됨), PC: SVG (필터 적용) */}
               <img
-                src={logo}
+                src={logoPng}
                 alt="GEOSANG RESOURCES"
-                className={`w-full h-full object-contain transition-all duration-500 ${
-                  isScrolled ? 'sm:filter-geosang-teal filter-geosang-teal-mobile' : 'sm:filter-white filter-geosang-teal-mobile'
+                className="sm:hidden w-full h-full object-contain transition-all duration-500"
+              />
+              <img
+                src={logoSvg}
+                alt="GEOSANG RESOURCES"
+                className={`hidden sm:block w-full h-full object-contain transition-all duration-500 ${
+                  isScrolled ? 'filter-geosang-teal' : 'filter-white'
                 }`}
               />
             </div>
